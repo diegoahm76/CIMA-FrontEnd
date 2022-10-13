@@ -15,15 +15,85 @@ const menuItems = [
   [
     {
       id: 'sidebar.admin.heading',
-      text: 'Administración',
+      text: 'Modulos',
       heading: true,
     },
     {
       id: 'module.admin.users',
-      text: 'Usuarios',
-      link: '/usuarios',
-      icon: 'icon-people',
+      text: 'Desempeño y gestión institucional',
+      link: '/a',
     },
+    {
+      id: 'module.admin.users',
+      text: 'Estado de los recursos naturales',
+      link: '/b',
+    },
+    {
+      id: 'module.admin.users',
+      text: 'Prioridades de gobierno',
+      link: '/c',
+    },
+  ],
+  [
+    {
+      id: 'sidebar.develop.heading',
+      text: 'Develop',
+      heading: true,
+    },
+    // {
+    //   id: 'sidebar.develop.users',
+    //   text: 'CRUD',
+    //   link: '/develop/crud',
+    //   icon: 'icon-list',
+    // },
+    // {
+    //   id: 'sidebar.develop.uploadFile',
+    //   text: 'Upload file',
+    //   link: '/develop/upload-file',
+    //   icon: 'icon-cloud-upload',
+    // },
+    // {
+    //   id: 'sidebar.develop.charts',
+    //   text: 'Charts',
+    //   link: '/develop/charts',
+    //   icon: 'icon-chart',
+    // },
+    {
+      id: 'sidebar.develop.visor',
+      text: 'Visor geográfico',
+      link: '/develop/visor',
+      icon: 'icon-globe-alt',
+    },
+    // {
+    //   id: 'sidebar.develop.domains',
+    //   text: 'Dominios controlados',
+    //   link: '/develop/domains',
+    //   icon: 'icon-book-open',
+    // },
+    // {
+    //   id: 'sidebar.develop.translations',
+    //   text: 'Translations',
+    //   link: '/develop/translations',
+    //   icon: 'icon-globe',
+    // },
+    // {
+    //   id: 'sidebar.develop.notifications',
+    //   text: 'Notifications',
+    //   link: '/develop/notifications',
+    //   icon: 'icon-speech',
+    // },
+    // {
+    //   id: 'sidebar.develop.forbiddenResource',
+    //   text: 'Forbidden',
+    //   link: '/develop/forbidden-resource',
+    //   icon: 'icon-list',
+    // },
+    // {
+    //   id: 'sidebar.develop.notFound',
+    //   text: 'Not found',
+    //   link: '/develop/zzz',
+    //   icon: 'icon-list',
+    // },
   ],
   [
     {
@@ -48,67 +118,6 @@ const menuItems = [
       text: 'Cerrar sesión',
       click: 'logout',
       icon: 'icon-logout',
-    },
-  ],
-  [
-    {
-      id: 'sidebar.develop.heading',
-      text: 'Develop',
-      heading: true,
-    },
-    {
-      id: 'sidebar.develop.users',
-      text: 'CRUD',
-      link: '/develop/crud',
-      icon: 'icon-list',
-    },
-    {
-      id: 'sidebar.develop.uploadFile',
-      text: 'Upload file',
-      link: '/develop/upload-file',
-      icon: 'icon-cloud-upload',
-    },
-    {
-      id: 'sidebar.develop.charts',
-      text: 'Charts',
-      link: '/develop/charts',
-      icon: 'icon-chart',
-    },
-    {
-      id: 'sidebar.develop.visor',
-      text: 'Visor geográfico',
-      link: '/develop/visor',
-      icon: 'icon-globe-alt',
-    },
-    {
-      id: 'sidebar.develop.domains',
-      text: 'Dominios controlados',
-      link: '/develop/domains',
-      icon: 'icon-book-open',
-    },
-    {
-      id: 'sidebar.develop.translations',
-      text: 'Translations',
-      link: '/develop/translations',
-      icon: 'icon-globe',
-    },
-    {
-      id: 'sidebar.develop.notifications',
-      text: 'Notifications',
-      link: '/develop/notifications',
-      icon: 'icon-speech',
-    },
-    {
-      id: 'sidebar.develop.forbiddenResource',
-      text: 'Forbidden',
-      link: '/develop/forbidden-resource',
-      icon: 'icon-list',
-    },
-    {
-      id: 'sidebar.develop.notFound',
-      text: 'Not found',
-      link: '/develop/zzz',
-      icon: 'icon-list',
     },
   ],
 ];
