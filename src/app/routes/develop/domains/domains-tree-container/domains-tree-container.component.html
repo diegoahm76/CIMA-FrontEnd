@@ -1,0 +1,152 @@
+<div
+  #modal="bs-modal"
+  bsModal
+  [config]="modalOptions.config"
+  (onHidden)="modalOptions.modal = null"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="dialog-auto-name"
+  [ngSwitch]="modalOptions.modal"
+>
+  <!-- modal-sm -->
+  <div *ngSwitchCase="'dominio-form'" class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <app-domain-form-modal
+        [parentModel]="selectedParentModel"
+        [domain]="selectedModel"
+        [type]="currentUrlParams.get('type')"
+        (closeClick)="modal.hide()"
+        (modelCreated)="
+          onModelCreated({
+            parentModel: selectedParentModel,
+            level: selectedLevel,
+            model: $event
+          })
+        "
+        (modelUpdated)="
+          onModelUpdated({
+            parentModel: selectedParentModel,
+            model: $event.model,
+            oldModel: $event.oldModel
+          })
+        "
+      ></app-domain-form-modal>
+    </div>
+  </div>
+  <div *ngSwitchCase="'delete-domain'" class="modal-dialog">
+    <div class="modal-content">
+      <app-delete-domain
+        [domain]="selectedModel"
+        (closeClick)="modal.hide()"
+        (modelDeleted)="onDeletedModel()"
+      ></app-delete-domain>
+    </div>
+  </div>
+</div>
+
+<div class="content-heading">
+  <div>Dominios controlados</div>
+</div>
+
+<div class="card card-default">
+  <div class="card-header">
+    <app-domains-filters
+      #filters
+      [state]="treeState$ | async"
+      [typesState]="typesState$ | async"
+      (searchClick)="search($event)"
+    ></app-domains-filters>
+
+    <div class="card-body pr-0 pb-2 pl-0">
+      <app-tree
+        #tree
+        [state$]="treeState$"
+        [(currentModel)]="currentModel"
+        [maxLevels]="maxLevels"
+        (selectModel)="onSelectModel($event)"
+        (newNodeClick)="showForm($event)"
+      >
+        <div initiated>
+          <no-records>
+            <em class="fas fa-exclamation-circle fa-fw"></em>
+            <h5>Seleccione el tipo que desea consultar</h5>
+          </no-records>
+        </div>
+
+        <div error>
+          <app-application-error
+            [error]="(treeState$ | async).error"
+          ></app-application-error>
+        </div>
+
+        <div loading>
+          <app-loading></app-loading>
+        </div>
+
+        <div itemLoading>
+          <app-loading></app-loading>
+        </div>
+
+        <div fileNewItem>
+          <a
+            (click)="
+              showForm({
+                level: tree.getCurrentLevel() + 1,
+                parentModel: currentModel
+              })
+            "
+            tooltip="Nuevo elemento"
+            [delay]="250"
+            ><i class="pi pi-plus-circle"></i
+          ></a>
+        </div>
+
+        <div folderDetails>
+          <ng-container *ngIf="currentModel">
+            <app-domain-details
+              type="folder"
+              [domain]="currentModel"
+              (editClick)="
+                showForm({
+                  parentModel: tree.getCurrentParentModel(),
+                  model: currentModel
+                })
+              "
+              (modelUpdated)="
+                onModelUpdated({
+                  parentModel: tree.getCurrentParentModel(),
+                  model: $event.model,
+                  oldModel: $event.oldModel
+                })
+              "
+            ></app-domain-details>
+          </ng-container>
+        </div>
+
+        <div fileDetails>
+          <ng-container *ngIf="currentModel">
+            <app-domain-details
+              type="file"
+              [domain]="currentModel"
+              (editClick)="
+                showForm({
+                  parentModel: tree.getCurrentParentModel(),
+                  model: currentModel
+                })
+              "
+              (deleteClick)="confirmModelDeletion(currentModel)"
+              (modelUpdated)="
+                onModelUpdated({
+                  parentModel: tree.getCurrentParentModel(),
+                  model: $event.model,
+                  oldModel: $event.oldModel
+                })
+              "
+            ></app-domain-details>
+          </ng-container>
+        </div>
+      </app-tree>
+    </div>
+  </div>
+</div>

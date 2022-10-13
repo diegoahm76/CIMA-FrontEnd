@@ -1,0 +1,65 @@
+<div class="content-heading">
+  <div>
+    Charts
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card card-default">
+      <div class="card-header"></div>
+      <div class="card-body">
+        <app-highchart
+          [state$]="chart1State$"
+          [config]="chart1Config"
+        >
+          <div initiated>Initial message!</div>
+
+          <div loading>
+            <app-loading></app-loading>
+          </div>
+
+          <div extra>
+            <div class="chart-download-button">
+              <a
+                (click)="downloadChart.emit(1)"
+                title="Descargar reporte completo"
+              >
+                <i class="fas fa-download fa-2x"></i>
+              </a>
+            </div>
+          </div>
+        </app-highchart>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card card-default">
+      <div class="card-header"></div>
+      <div class="card-body">
+        <app-highchart
+          [state$]="chart2State$"
+          [config]="chart2Config"
+        >
+          <div initiated>Initial message!</div>
+
+          <div loading>
+            <app-loading></app-loading>
+          </div>
+
+          <div extra>
+            <div class="chart-download-button">
+              <a
+                (click)="downloadChart.emit(2)"
+                title="Descargar reporte completo"
+              >
+                <i class="fas fa-download fa-2x"></i>
+              </a>
+            </div>
+          </div>
+        </app-highchart>
+      </div>
+    </div>
+  </div>
+</div>

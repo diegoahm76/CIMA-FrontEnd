@@ -1,0 +1,31 @@
+ul.fjs-list {
+  a:hover,
+  a:active,
+  a:focus {
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #000;
+  }
+
+  li.fjs-item {
+    a {
+      & > span {
+        & > i.pi {
+          font-size: 12px;
+        }
+      }
+
+      i.pi-angle-right {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  li.fjs-main-active {
+    a:hover {
+      color: #fff;
+    }
+  }
+}

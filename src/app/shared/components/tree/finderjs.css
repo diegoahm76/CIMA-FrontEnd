@@ -1,0 +1,186 @@
+.fjs-container {
+  background-color: white;
+  border: solid 1px lightgray;
+  display: flex;
+  font-size: 0.9em;
+  min-height: 400px;
+  /* Eduardo */
+  /*overflow: auto;*/
+  /* Eduardo */
+  overflow-x: auto;
+}
+
+.fjs-container:focus {
+  outline: none;
+}
+
+.fjs-col {
+  border-right: solid 1px lightgray;
+  max-height: 600px;
+  min-height: inherit;
+  min-width: 200px;
+  overflow-y: auto;
+}
+
+.fjs-item a {
+  align-items: flex-end;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  /* Eduardo */
+  /* padding: 5px; */
+  padding: 6px 5px 5px 5px;
+  text-decoration: none;
+}
+
+.fjs-item a:focus {
+  outline: none;
+}
+
+.fjs-item a span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* Eduardo */
+  user-select: none;
+}
+
+.fjs-item a span i {
+  /* Eduardo */
+  /*padding-right: 5px;*/
+  /* Eduardo */
+  margin-right: 5px;
+}
+
+/* Eduardo */
+.fjs-item a > i {
+  line-height: unset;
+}
+
+.fjs-active a {
+  background-color: #dedede;
+}
+
+/* Eduardo */
+/*.fjs-col:nth-last-child(2) .fjs-active a,*/
+/* Eduardo */
+/*.fjs-col:nth-last-child(1) .fjs-active a,*/
+/*.fjs-col:last-child .fjs-active a {*/
+/*  !*background-color: dodgerblue;*!*/
+/*  background-color: #1e90ff;*/
+/*  color: white;*/
+/*}*/
+
+/* Eduardo */
+.fjs-main-active a {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.fjs-list {
+  /* Eduardo */
+  max-width: 250px;
+  /* Eduardo */
+  max-height: 500px;
+  list-style: none;
+  /* Eduardo */
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.fjs-item-content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fa-folder {
+  color: #90e4ff;
+}
+
+.fa-file-o {
+  color: #a7a7a7;
+}
+
+.fa-external-link {
+  color: #629eff;
+  font-size: smaller;
+}
+
+.fa-caret-right {
+  color: gray;
+  padding: 0 0 0 0.5em;
+}
+
+/* Eduardo */
+/* .fjs-col:nth-last-child(2) .fjs-active a .fa-caret-right, */
+/* Eduardo */
+.fjs-col:nth-last-child(1) .fjs-active a .fa-caret-right,
+/* Eduardo */
+.fjs-main-active a .fa-caret-right,
+.fjs-col:last-child .fjs-active a .fa-caret-right {
+  color: white;
+}
+
+.leaf-col {
+  align-items: center;
+  border-right: 0;
+  display: flex;
+  flex: 2;
+  justify-content: center;
+  padding: 0 1.5em;
+}
+
+.leaf-row {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.3em;
+  text-align: center;
+}
+
+.leaf-row .fa {
+  color: #a7a7a7;
+  font-size: 4em;
+  margin: 20px 0;
+}
+
+.leaf-row .fa-refresh {
+  font-size: 2em;
+}
+
+.leaf-col .meta {
+  font-size: 0.7em;
+}
+
+.leaf-col .meta strong {
+  color: #c1c1c1;
+  font-weight: normal;
+}
+
+.leaf-col .meta:first-of-type {
+  margin-top: 1.5em;
+}
+
+/* Eduardo */
+.level-label {
+  min-height: 24px;
+  background-color: #f6f6f6;
+  font-weight: 500;
+  /*padding: 3px 6px;*/
+  padding: 4px 6px 3px 6px;
+  border-bottom: #d3d3d3 solid 1px;
+}
+
+/* Eduardo */
+.level-label > a {
+  float: right;
+  color: #5d9cec;
+  margin-top: 1px;
+  margin-right: 2px;
+}
+
+/* Eduardo */
+.level-label > a > i {
+  font-size: 13px;
+}

@@ -1,0 +1,8 @@
+<div *ngIf="visible && _errors.length" class="text-danger">
+  <ng-container *ngIf="_errors.length === 1; else moreErrors">{{
+    _errors[0] | async
+  }}</ng-container>
+  <ng-template #moreErrors>
+    <div *ngFor="let error of _errors">- {{ error | async }}</div>
+  </ng-template>
+</div>

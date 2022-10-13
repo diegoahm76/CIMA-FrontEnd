@@ -1,0 +1,32 @@
+nav.topnavbar {
+  background-color: #3366cb;
+  background-image: none;
+
+  div.navbar-header {
+    .brand-logo {
+      padding: 4px 15px;
+
+      & > img {
+        max-width: 90% !important;
+      }
+    }
+
+    //.brand-logo-collapsed {
+    //  & > img.img-fluid {
+    //    max-width: 86%;
+    //  }
+    //}
+  }
+
+  ul.navbar-nav {
+    & > li.nav-item {
+      & > a.nav-link {
+        &:hover,
+        &:focus {
+          color: #fff;
+          filter: brightness(85%);
+        }
+      }
+    }
+  }
+}

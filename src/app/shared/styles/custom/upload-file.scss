@@ -1,0 +1,9 @@
+file-pond {
+  div.filepond--drop-label {
+    cursor: pointer;
+
+    & > label {
+      cursor: pointer;
+    }
+  }
+}

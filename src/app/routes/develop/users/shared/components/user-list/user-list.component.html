@@ -1,0 +1,116 @@
+<div [ngSwitch]="state.status" class="list-table">
+  <ng-container *ngSwitchCase="storeStatus.INITIATED">
+    <ng-content select="[initiated]"></ng-content>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="storeStatus.ERROR">
+    <ng-content select="[error]"></ng-content>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="storeStatus.LOADING">
+    <ng-content select="[loading]"></ng-content>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="storeStatus.OK">
+    <ng-container *ngIf="!state.list?.length; else noEmpty">
+      <ng-content select="[no-records]"></ng-content>
+    </ng-container>
+
+    <ng-template #noEmpty>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>E-mail</th>
+              <th>Departamento</th>
+              <th>Ciudad</th>
+              <th class="text-right">Fecha de nacimiento</th>
+              <th class="text-right">Registro</th>
+              <th class="text-right">Último inicio sesión</th>
+              <th class="text-center" style="width: 70px">Rol</th>
+              <th class="text-center" style="width: 80px">Estado</th>
+              <th style="width: 126px"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let model of state.list; trackBy: identify">
+              <td>{{ model.fullName }}</td>
+              <td>{{ model.email }}</td>
+              <td>{{ model.state?.value }}</td>
+              <td>{{ model.city?.value }}</td>
+              <td class="text-right">
+                {{ model.birthday | date: 'dd/MM/yyy' }}
+              </td>
+              <td class="text-right">
+                {{ model.created | date: 'dd/MM/yyyy h:mm aa' }}
+              </td>
+              <td class="text-right">
+                {{ model.lastSession | date: 'dd/MM/yyyy h:mm aa' }}
+              </td>
+              <td class="text-center">
+                <app-role-badge [role]="model._role"></app-role-badge>
+              </td>
+              <td class="text-center">
+                <app-status-badge [status]="model.status"></app-status-badge>
+              </td>
+              <td class="actions">
+                <table class="actions">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <app-activate-user
+                          [user]="model"
+                          tooltipStr="Activar/Desactivar"
+                          (modelUpdated)="
+                            modelUpdated.emit({
+                              model: $event,
+                              oldModel: model
+                            })
+                          "
+                        ></app-activate-user>
+                      </td>
+                      <td>
+                        <a
+                          tooltip="Editar en modal"
+                          [delay]="250"
+                          (click)="editInModalClick.emit(model)"
+                        >
+                          <i class="far fa-window-maximize"></i>
+                        </a>
+                      </td>
+                      <!-- @TODO -->
+                      <!-- <td>
+                        <a
+                          [routerLink]="[model.strId, 'formulario']"
+                          tooltip="Editar"
+                          [delay]="250"
+                          (click)="editClick.emit(model)"
+                        >
+                          <i class="far fa-edit"></i>
+                        </a>
+                      </td> -->
+                      <td>
+                        <a
+                          tooltip="Borrar"
+                          [delay]="250"
+                          (click)="deleteClick.emit(model)"
+                        >
+                          <i class="far fa-trash-alt"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ng-container *ngIf="state.paginator?.lastPage > 1">
+        <ng-content select="[paginator]"></ng-content>
+      </ng-container>
+    </ng-template>
+  </ng-container>
+</div>

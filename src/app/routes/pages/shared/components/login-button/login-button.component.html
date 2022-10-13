@@ -1,0 +1,17 @@
+<ng-container *ngIf="state$ | async as state">
+  <app-application-error [error]="state.error"></app-application-error>
+
+  <button
+    type="button"
+    [disabled]="state.status === storeStatus.LOADING"
+    (click)="signInClick.emit()"
+    class="btn btn-block btn-primary mt-lg"
+  >
+    <i
+      [ngClass]="
+        state.status | loadingIconClass: 'fas fa-sign-in-alt'
+      "
+    ></i>
+    {{ submitButton.label$ | async }}
+  </button>
+</ng-container>

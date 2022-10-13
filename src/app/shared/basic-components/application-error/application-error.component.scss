@@ -1,0 +1,18 @@
+:host ::ng-deep {
+  display: block;
+
+  div.alert {
+    padding: 0.3rem 0.7rem;
+
+    h4 {
+      margin-top: 5px;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      &:last-child {
+        margin-bottom: 3px;
+      }
+    }
+  }
+}

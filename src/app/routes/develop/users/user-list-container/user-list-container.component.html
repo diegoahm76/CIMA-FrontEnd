@@ -1,0 +1,98 @@
+<div
+  #modal="bs-modal"
+  bsModal
+  [config]="modalOptions.config"
+  (onHidden)="modalOptions.modal = null"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="dialog-auto-name"
+  [ngSwitch]="modalOptions.modal"
+>
+  <!-- modal-sm -->
+  <div *ngSwitchCase="'user-form'" class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <app-user-form-modal
+        [user]="selectedModel"
+        [statesState$]="statesState$"
+        [citiesState$]="modalCitiesState$"
+        [rolesState$]="rolesState$"
+        (closeClick)="modal.hide()"
+        (modelCreated)="onModelCreated($event)"
+        (modelUpdated)="onModelUpdated($event)"
+      ></app-user-form-modal>
+    </div>
+  </div>
+  <div *ngSwitchCase="'delete-user'" class="modal-dialog">
+    <div class="modal-content">
+      <app-delete-user
+        [user]="selectedModel"
+        (closeClick)="modal.hide()"
+        (modelDeleted)="onDeletedModel(selectedModel)"
+      ></app-delete-user>
+    </div>
+  </div>
+</div>
+
+<div class="content-heading">
+  <div>
+    Usuarios
+    <small>CRUD 1</small>
+  </div>
+</div>
+
+<div class="card card-default">
+  <div class="card-header">
+    <app-users-filters
+      #filters
+      [state$]="usersState$"
+      [statesState$]="statesState$"
+      [citiesState$]="filtersCitiesState$"
+      [rolesState$]="rolesState$"
+      [statusesState$]="statusesState$"
+      (searchClick)="search($event)"
+      (newInModalClick)="showFormInModal()"
+      (newClick)="showForm()"
+    ></app-users-filters>
+  </div>
+
+  <div class="card-body pt-0">
+    <ng-container *ngIf="usersState$ | async as usersState">
+      <app-user-list-ui
+        [state]="usersState"
+        (editInModalClick)="showFormInModal($event)"
+        (deleteClick)="confirmModelDeletion($event)"
+        (modelUpdated)="onModelUpdated($event)"
+      >
+        <div initiated>Initial message!</div>
+
+        <div error>
+          <app-application-error
+            [error]="usersState.error"
+          ></app-application-error>
+        </div>
+
+        <div loading>
+          <app-loading></app-loading>
+        </div>
+
+        <div no-records>
+          <no-records>
+            <em class="fas fa-exclamation-circle fa-fw"></em>
+            <h5>No se encontraron registros</h5>
+          </no-records>
+        </div>
+
+        <div paginator>
+          <!-- <div *ngIf="listOptions.paginator?.lastPage > 1">
+            <paginator
+              [currentPage]="listOptions.paginator.currentPage"
+              [paginator]="listOptions.paginator"
+              (pageClick)="changePage($event)"
+            ></paginator>
+          </div> -->
+        </div>
+      </app-user-list-ui>
+    </ng-container>
+  </div>
+</div>

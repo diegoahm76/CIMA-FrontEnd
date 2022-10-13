@@ -1,0 +1,135 @@
+<ng-container *ngIf="state$ | async as state">
+  <ng-container *ngIf="state.status === storeStatus.INITIATED">
+    <ng-content select="[initiated]"></ng-content>
+  </ng-container>
+
+  <ng-container *ngIf="state.status === storeStatus.ERROR">
+    <ng-content select="[error]"></ng-content>
+  </ng-container>
+
+  <!-- <div>
+    breadcrumbs:
+    <div *ngFor="let item of breadcrumbs" class="p-md-3">
+      <div>label: {{ item.label }}</div>
+      <div>parentModel - id: {{ item.parentModel?.id }}</div>
+      <div>parentModel - label: {{ item.parentModel?._treeLabel }}</div>
+    </div>
+  </div>
+
+  <div>
+    currentModel:
+    <div>id: {{ currentModel?.id}}</div>
+    <div>label: {{ currentModel?._treeLabel}}</div>
+  </div>
+
+  <div class="p-mt-3 p-md-3">
+    currentLevel: {{ currentLevel }}
+  </div> -->
+
+  <ng-container
+    *ngIf="
+      state.status === storeStatus.LOADING || state.status === storeStatus.OK
+    "
+  >
+    <div
+      *ngIf="
+        state.status === storeStatus.LOADING && !breadcrumbs?.length;
+        else noLoading
+      "
+    >
+      <ng-content select="[loading]"></ng-content>
+    </div>
+    <ng-template #noLoading>
+      <div class="fjs-container" tabindex="0">
+        <!-- <ng-container *ngIf="breadcrumbs.length; else noItems"> -->
+        <div *ngFor="let item of breadcrumbs; let i = index" class="fjs-col">
+          <div class="level-label">
+            {{ item.label }}
+            <a
+              *ngIf="
+                maxItemsPerLevel === null ||
+                maxItemsPerLevel === undefined ||
+                (maxItemsPerLevel &&
+                  item.parentModel._treeChildren.length < maxItemsPerLevel)
+              "
+              (click)="
+                newNodeClick.emit({
+                  level: i,
+                  parentModel: item.parentModel
+                })
+              "
+              tooltip="Nuevo elemento"
+              [delay]="250"
+              placement="bottom"
+              ><i class="fas fa-plus-circle"></i
+            ></a>
+          </div>
+          <ul class="fjs-list">
+            <li
+              *ngFor="let model of item.parentModel._treeChildren"
+              class="fjs-item fjs-has-children"
+              [ngClass]="itemClass(i, model)"
+            >
+              <a (click)="selectNode({level: i, model: model})" tabindex="-1"
+                ><span
+                  ><i [ngClass]="itemIconClass(model)"></i
+                  >{{ model._treeLabel }}</span
+                ><i
+                  *ngIf="model._treeStatus === 'folder'"
+                  class="fas fa-caret-right"
+                ></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+        <div *ngIf="currentModel" class="node-details">
+          <div class="new-node">
+            <ng-container *ngIf="currentModel._treeStatus === 'file'">
+              <ng-container
+                *ngIf="
+                  !maxLevels || (maxLevels && currentLevel + 1 < maxLevels)
+                "
+              >
+                <ng-content select="[fileNewItem]"></ng-content>
+              </ng-container>
+            </ng-container>
+          </div>
+
+          <div [ngSwitch]="currentModel._treeStatus" class="node-details-inner">
+            <h3>{{ currentModel._treeLabel }}</h3>
+
+            <div *ngSwitchCase="'loading'">
+              <ng-content select="[itemLoading]"></ng-content>
+            </div>
+            <div *ngSwitchCase="'folder'">
+              <ng-content select="[folderDetails]"></ng-content>
+            </div>
+            <div *ngSwitchCase="'file'">
+              <ng-content select="[fileDetails]"></ng-content>
+            </div>
+          </div>
+        </div>
+        <!-- </ng-container> -->
+        <!-- <ng-template #noItems>
+          <div class="fjs-col">
+            <div class="level-label">
+              Nivel 1
+              <a
+                (click)="
+                  newNodeClick.emit({
+                    level: 0,
+                    parentModel: foo
+                  })
+                "
+                tooltip="Nuevo elemento"
+                delay="250"
+                placement="bottom"
+              ><i class="fas fa-plus-circle"></i
+              ></a>
+            </div>
+          </div>
+        </ng-template> -->
+      </div>
+    </ng-template>
+  </ng-container>
+</ng-container>

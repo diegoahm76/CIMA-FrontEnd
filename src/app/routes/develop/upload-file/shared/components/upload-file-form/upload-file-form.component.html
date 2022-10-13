@@ -1,0 +1,117 @@
+<ng-container *ngIf="state$ | async as state">
+  <form
+    [formGroup]="form"
+    novalidate=""
+    class="form-horizontal"
+    (ngSubmit)="submit(form)"
+  >
+    <div class="mt-3"></div>
+
+    <app-application-error [error]="state.error"></app-application-error>
+
+    <div class="card card-default">
+      <div class="card-header"></div>
+
+      <div class="card-body pt-0">
+        <div class="row">
+          <div class="col-12">
+            <app-application-error
+              [error]="state.error"
+            ></app-application-error>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-11">
+            <div class="text-center mb-3">
+              Los campos con <span class="text-danger">*</span> son requeridos
+            </div>
+
+            <div class="row form-group mt-4">
+              <app-field-error
+                [errors]="form.get('field1').errors"
+                [visible]="form.get('field1').dirty"
+                class="offset-xl-3 col-xl-9"
+              ></app-field-error>
+              <label class="col-xl-3 col-form-label text-left text-xl-right">
+                Campo 1<span>*</span>
+              </label>
+              <div class="col-xl-9">
+                <input
+                  type="text"
+                  formControlName="field1"
+                  class="form-control"
+                />
+              </div>
+            </div>
+
+            <div class="row form-group mt-4">
+              <app-field-error
+                [errors]="form.get('field2').errors"
+                [visible]="form.get('field2').dirty"
+                class="offset-xl-3 col-xl-9"
+              ></app-field-error>
+              <label class="col-xl-3 col-form-label text-left text-xl-right">
+                Campo 2<span>*</span>
+              </label>
+              <div class="col-xl-9">
+                <input
+                  type="text"
+                  formControlName="field2"
+                  class="form-control"
+                />
+              </div>
+            </div>
+
+            <div class="row form-group mt-4">
+              <app-field-error
+                [errors]="form.get('file').errors"
+                [visible]="form.get('file').dirty"
+                class="offset-xl-3 col-xl-9"
+              ></app-field-error>
+              <label class="col-xl-3 col-form-label text-left text-xl-right">
+                Archivo<span>*</span>
+              </label>
+              <div class="col-xl-9">
+                <app-upload-file
+                  formControlName="file"
+                  url="archivos/url"
+                  [acceptedFileTypes]="['application/zip']"
+                  [expectedTypes]="['ZIP']"
+                  [expectedTypesMap]="{'application/zip': '.zip'}"
+                  maxFileSize="10MB"
+                ></app-upload-file>
+              </div>
+            </div>
+
+            <!-- <div><strong>values and errors:</strong></div>
+            <div *ngFor="let item of form.controls | keyvalue">
+              {{item.key}}: {{form.value[item.key] | json}} - {{item.value.errors | json}}
+            </div>
+            <div class="mt-2"><strong>filtered values:</strong></div>
+            <div>{{ form.value | json }}</div> -->
+
+            <div class="row form-group mt-5">
+              <div class="offset-xl-3 col-xl-9">
+                <button
+                  type="submit"
+                  [disabled]="
+                    state.status === storeStatus.LOADING || form.invalid
+                  "
+                  class="btn btn-primary mr-1 mb-1"
+                >
+                  <i
+                    [ngClass]="
+                      state.status | loadingIconClass: 'fas fa-check-circle'
+                    "
+                  ></i>
+                  {{ submitButton.label$ | async }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-container>

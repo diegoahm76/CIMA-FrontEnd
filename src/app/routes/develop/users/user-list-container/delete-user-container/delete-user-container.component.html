@@ -1,0 +1,40 @@
+<ng-container *ngIf="state$ | async as state">
+  <app-modal-confirm-ui
+    [status]="state.status"
+    [submitButton]="submitButton"
+    (closeClick)="closeClick.emit()"
+    (confirmClick)="confirm()"
+  >
+    <div body>
+      <app-application-error [error]="state.error"></app-application-error>
+
+      <p>Se borrará el usuario:</p>
+      <dl>
+        <dt>Nombre</dt>
+        <dd>{{ user.fullName }}</dd>
+        <dt>E-mail</dt>
+        <dd>{{ user.email }}</dd>
+        <dt>Fecha de registro</dt>
+        <dd>{{ user.created | date: 'dd/MM/yyyy h:mm aa' }}</dd>
+        <dt>Último ingreso</dt>
+        <dd>
+          {{ (user.lastSession | date: 'dd/MM/yyyy h:mm aa') || '&nbsp;' }}
+        </dd>
+        <dt>Rol</dt>
+        <dd>
+          <div>
+            <app-role-badge [role]="user._role"></app-role-badge>
+          </div>
+        </dd>
+        <dt>Estado</dt>
+        <dd>
+          <div>
+            <app-status-badge [status]="user.status"></app-status-badge>
+          </div>
+        </dd>
+      </dl>
+
+      <p class="mt-4">Por favor confirme la acción.</p>
+    </div>
+  </app-modal-confirm-ui>
+</ng-container>

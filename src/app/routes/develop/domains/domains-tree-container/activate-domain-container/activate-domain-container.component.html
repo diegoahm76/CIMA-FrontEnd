@@ -1,0 +1,10 @@
+<app-activation-switch
+  [checked]="domain.status === domainStatusEnum.ACTIVE"
+  [tooltipStr]="tooltipStr"
+  (changeStatusClick)="
+    changeEstado({
+      checked: $event.checked,
+      event: $event.event
+    })
+  "
+></app-activation-switch>

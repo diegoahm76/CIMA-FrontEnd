@@ -1,0 +1,10 @@
+<app-user-form-modal-ui
+  [state$]="state$"
+  [user]="user"
+  [statesState]="statesState$ | async"
+  [citiesState]="citiesState$ | async"
+  [rolesState]="rolesState$ | async"
+  (closeClick)="closeClick.emit()"
+  (submitClick)="submit($event)"
+  (stateIdChange)="onChangeStateId($event)"
+></app-user-form-modal-ui>

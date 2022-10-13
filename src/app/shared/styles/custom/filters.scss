@@ -1,0 +1,20 @@
+form.filters-form {
+  & > div.row {
+    & > div[class^='col-md-'] {
+      margin-top: 5px;
+      margin-bottom: 5px;
+
+      &:first-child {
+        margin-top: 0;
+        //margin-bottom: 0;
+
+        & > div.row {
+          & > div[class^='col-md-'] {
+            margin-top: 5px;
+            margin-bottom: 5px;
+          }
+        }
+      }
+    }
+  }
+}

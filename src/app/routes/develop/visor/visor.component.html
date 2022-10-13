@@ -1,0 +1,19 @@
+<div class="content-heading">
+  <div>Visor geográfico</div>
+</div>
+
+<div class="card card-default">
+  <div class="card-body">
+    <div id="sidebar" style="display: none"></div>
+    <div id="visor1" style="height: 600px"></div>
+  </div>
+</div>
+
+<div class="col-12">
+  <app-upload-local-file
+    [acceptedFileTypes]="['application/zip']"
+    [expectedTypes]="['ZIP']"
+    [expectedTypesMap]="{'application/zip': '.zip'}"
+    (fileAdded)="fileAdded($event)"
+  ></app-upload-local-file>
+</div>

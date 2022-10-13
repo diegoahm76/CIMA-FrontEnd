@@ -1,0 +1,131 @@
+<form
+  [formGroup]="form"
+  novalidate=""
+  class="filters-form"
+  (ngSubmit)="search(form)"
+>
+  <div class="row">
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="row">
+            <div class="col-md-12">Búsqueda</div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <input
+                type="text"
+                formControlName="search"
+                class="form-control input-sm"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="row">
+            <div class="col-md-12">Departamento</div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <app-select
+                formControlName="stateId"
+                [status]="statesState.status"
+                [list]="statesState.list"
+                [small]="true"
+                (onChange)="onChangeStateId($event)"
+              ></app-select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="row">
+            <div class="col-md-12">Ciudad</div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <app-select
+                formControlName="cityId"
+                [status]="citiesState.status"
+                [list]="citiesState.list"
+                [placeholder]="cityPlaceholder.placeholder$ | async"
+                [small]="true"
+              ></app-select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="row">
+            <div class="col-md-12">Rol</div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <app-select
+                formControlName="role"
+                [status]="rolesState.status"
+                [list]="rolesState.list"
+                placeholder="(todos los roles)"
+                [small]="true"
+              ></app-select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="row">
+            <div class="col-md-12">Estado</div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <app-select
+                formControlName="status"
+                [status]="statusesState.status"
+                [list]="statusesState.list"
+                placeholder="(todos los estados)"
+                [small]="true"
+              ></app-select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="row">
+        <div class="col-md-12">&nbsp;</div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button
+            type="submit"
+            [disabled]="form.invalid || state.status === storeStatus.LOADING"
+            class="btn mb-sm btn-info mr-1 mb-1"
+          >
+            <i class="fas fa-search"></i>
+            Buscar
+          </button>
+
+          <button
+            type="button"
+            (click)="newInModalClick.emit()"
+            class="btn mb-sm btn-success mr-1 mb-1"
+          >
+            <i class="fas fa-plus-circle"></i>
+            Nuevo usuario (modal)
+          </button>
+
+          <!-- @TODO -->
+          <!-- <a
+            [routerLink]="['formulario']"
+            (click)="newClick.emit()"
+            class="btn mb-sm btn-success mr-1 mb-1"
+          >
+            <i class="fas fa-plus-circle"></i>
+            Nuevo usuario
+          </a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

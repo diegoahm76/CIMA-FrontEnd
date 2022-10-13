@@ -1,0 +1,13 @@
+<label [tooltip]="tooltipStr" [delay]="250" class="switch">
+  <input
+    type="checkbox"
+    [checked]="checked"
+    (change)="
+      changeStatusClick.emit({
+        checked: $event.target['checked'],
+        event: $event
+      })
+    "
+  />
+  <div class="slider round"></div>
+</label>

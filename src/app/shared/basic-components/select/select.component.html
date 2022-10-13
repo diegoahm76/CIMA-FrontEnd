@@ -1,0 +1,21 @@
+<span
+  *ngIf="status === storeStatus.ERROR; else noError"
+  class="badge badge-danger error"
+>
+  Error!
+</span>
+<ng-template #noError>
+  <ng-select
+    [(ngModel)]="value"
+    [items]="list | ngOption: 'strId':'_label'"
+    [loading]="status === storeStatus.LOADING"
+    [disabled]="disabled"
+    [multiple]="multiple"
+    loadingText="{{ 'selects.loading' | translate }}"
+    notFoundText="{{ 'selects.select_no_items_found' | translate }}"
+    bindValue="value"
+    placeholder="{{ currentPlaceholder }}"
+    (blur)="onBlur()"
+    [class.input-sm]="small"
+  ></ng-select>
+</ng-template>

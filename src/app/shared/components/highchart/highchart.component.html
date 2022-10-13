@@ -1,0 +1,30 @@
+<ng-container
+  *ngIf="state$ | async as state"
+  [ngSwitch]="state.status"
+>
+  <ng-container *ngSwitchCase="storeStatus.INITIATED">
+    <ng-content select="[initiated]"></ng-content>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="storeStatus.ERROR">
+    <ng-content select="[error]"></ng-content>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="storeStatus.LOADING">
+    <ng-content select="[loading]"></ng-content>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="storeStatus.OK">
+    <highcharts-chart
+      [Highcharts]="Highcharts"
+      [constructorType]="chartConstructor"
+      [options]="config"
+      [callbackFunction]="chartCallback"
+      [(update)]="updateFlag"
+      [oneToOne]="oneToOneFlag"
+      [runOutsideAngular]="runOutsideAngular"
+      style="width: 100%; height: 400px; display: block;"
+    ></highcharts-chart>
+    <ng-content select="[extra]"></ng-content>
+  </ng-container>
+</ng-container>

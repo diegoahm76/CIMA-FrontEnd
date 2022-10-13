@@ -1,0 +1,15 @@
+ul.pagination {
+  justify-content: center;
+
+  & > li {
+    &.active {
+      & > a.page-link {
+        cursor: default;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+<ul>
+  <li>
+    <strong>Tipo:</strong>
+    {{ domainTypeValues[domain.type] }}
+  </li>
+  <li>
+    <strong>Estado:</strong>
+    <app-status-badge [status]="domain.status" class="ml-1"></app-status-badge>
+    <app-activate-domain
+      [domain]="domain"
+      tooltipStr="Activar/Desactivar"
+      (modelUpdated)="
+        modelUpdated.emit({
+          model: $event,
+          oldModel: domain
+        })
+      "
+    ></app-activate-domain>
+  </li>
+</ul>
+
+<div class="actions">
+  <button type="button" (click)="editClick.emit()" class="btn btn-info btn-sm">
+    <i class="far fa-edit"></i>
+    {{ 'buttons.edit.editar' | translate }}
+  </button>
+
+  <button
+    *ngIf="type === 'file'"
+    type="button"
+    (click)="deleteClick.emit()"
+    class="btn btn-danger btn-sm"
+  >
+    <i class="far fa-trash-alt"></i>
+    {{ 'buttons.delete.borrar' | translate }}
+  </button>
+</div>

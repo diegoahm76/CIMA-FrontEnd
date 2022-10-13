@@ -1,0 +1,12 @@
+<app-users-filters-ui
+  [state]="state$ | async"
+  [statesState]="statesState$ | async"
+  [citiesState]="citiesState$ | async"
+  [rolesState]="rolesState$ | async"
+  [statusesState]="statusesState$ | async"
+  [params]="filtersParams.params"
+  (searchClick)="search($event)"
+  (newInModalClick)="newInModalClick.emit()"
+  (newClick)="newClick.emit()"
+  (stateIdChange)="onChangeStateId($event)"
+></app-users-filters-ui>

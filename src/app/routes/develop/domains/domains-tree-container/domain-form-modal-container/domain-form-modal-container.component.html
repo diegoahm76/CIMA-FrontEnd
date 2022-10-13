@@ -1,0 +1,8 @@
+<app-domain-form-modal-ui
+  [state$]="state$"
+  [domain]="domain"
+  [parentModel]="parentModel"
+  [type]="type"
+  (closeClick)="closeClick.emit()"
+  (submitClick)="submit($event)"
+></app-domain-form-modal-ui>

@@ -1,0 +1,99 @@
+.footer-container {
+  position: inherit;
+  height: inherit !important;
+  background-color: #3366cc !important;
+  display: flex;
+  font-size: 16px;
+  color: #fff !important;
+  padding-top: 77px !important;
+  padding-bottom: 70px !important;
+  margin-top: 1.8%;
+
+  div.footer-social {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    img.img-width {
+      width: 2.5rem;
+    }
+  }
+
+  p.footer-links a {
+    font-size: 0.875rem !important;
+    font-weight: 400;
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  div.contacto {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+
+    p.footer-contacto-tel {
+      font-size: 0.875rem;
+      color: #ffffff;
+    }
+
+    button.btn-round {
+      width: 100%;
+      transition: 0.3s all ease-in-out;
+      border-radius: 30px !important;
+      margin: 1rem 0 0 0 !important;
+
+      span.govco-icon {
+        display: inline-block;
+        font-size: 1.5rem !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      span.btn-govco-text {
+        display: inline-block;
+        font-size: 0.875rem;
+        font-weight: 400 !important;
+        padding-top: 0.401rem;
+        padding-bottom: 0.401rem;
+        padding-left: 0.3rem;
+      }
+
+      img.icono-btn {
+        display: inline-block;
+        width: 1.5rem;
+      }
+
+      span.btn-govco-text {
+        display: inline-block;
+        font-size: 0.875rem;
+        font-family: 'Work Sans', 'Montserrat', sans-serif;
+        font-weight: 400 !important;
+        color: #ffffff;
+        line-height: 1.5 !important;
+        padding-top: 0.401rem;
+        padding-left: 0.3rem;
+        padding-bottom: 0.401rem;
+      }
+    }
+
+    button.btn-footer-white {
+      display: flex !important;
+      font-weight: 600;
+      /* background-color: #3366CC !important; */
+      color: white !important;
+      /* box-shadow: none !important; */
+      cursor: pointer !important;
+      line-height: 1.5rem !important;
+      align-items: center !important;
+      padding: 0.1em 0.7em !important;
+      border: 1px solid !important;
+    }
+  }
+
+  p.footer-descripcion {
+    font-size: 1rem !important;
+    padding-right: 1rem;
+    color: #ffffff !important;
+  }
+}

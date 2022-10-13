@@ -1,0 +1,46 @@
+<form
+  [formGroup]="form"
+  novalidate=""
+  class="filters-form"
+  (ngSubmit)="search(form)"
+>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12">Tipo</div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <app-select
+                formControlName="type"
+                [status]="typesState.status"
+                [list]="typesState.list"
+                placeholder="(todos los tipos)"
+                [small]="true"
+              ></app-select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-12">&nbsp;</div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button
+            type="submit"
+            [disabled]="form.invalid || state.status === storeStatus.LOADING"
+            class="btn mb-sm btn-info mr-1 mb-1"
+          >
+            <i class="fas fa-search"></i>
+            Buscar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

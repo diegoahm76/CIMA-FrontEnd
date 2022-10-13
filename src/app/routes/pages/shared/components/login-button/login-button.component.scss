@@ -1,0 +1,39 @@
+div.opcion-botones-sociales {
+  margin-top: 15px;
+
+  p {
+    text-align: center;
+  }
+
+  div.social-buttons {
+    margin-top: 15px;
+    text-align: center;
+
+    button {
+      margin-right: 4px;
+      margin-left: 4px;
+
+      &.facebook {
+        background-color: #4267b2;
+        color: #fff;
+      }
+
+      &.google {
+        background-color: #d9453d;
+        color: #fff;
+      }
+
+      & > i.fab {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+div.opcion-usuario-contrasena {
+  // margin-top: 30px;
+
+  p {
+    text-align: center;
+  }
+}

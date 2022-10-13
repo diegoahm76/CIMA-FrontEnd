@@ -1,0 +1,85 @@
+/* You can add global styles to this file, and also import other style files */
+
+//== Vendor
+@import '~@fortawesome/fontawesome-free/css/brands.css';
+@import '~@fortawesome/fontawesome-free/css/regular.css';
+@import '~@fortawesome/fontawesome-free/css/solid.css';
+@import '~@fortawesome/fontawesome-free/css/fontawesome.css';
+@import '~simple-line-icons/css/simple-line-icons.css';
+
+@import '~loaders.css/loaders.css';
+
+//== Bootstrap
+@import './app/shared/styles/bootstrap.scss';
+//== Application
+@import './app/shared/styles/app.scss';
+
+//== Top navbar
+@import './app/shared/styles/custom/top-navbar.scss';
+
+//== Sidebar
+@import './app/shared/styles/custom/sidebar.scss';
+
+//== Filters
+@import './app/shared/styles/custom/filters.scss';
+
+//== Table
+@import './app/shared/styles/custom/tables.scss';
+
+//== Forms
+@import './app/shared/styles/custom/forms.scss';
+
+//== Modal
+@import './app/shared/styles/custom/modal.scss';
+
+//== Buttons
+@import './app/shared/styles/custom/buttons.scss';
+
+//== Pagination
+@import './app/shared/styles/custom/pagination.scss';
+
+//== Alerts
+@import './app/shared/styles/custom/alerts.scss';
+
+//== ng-select
+@import './app/shared/styles/custom/ng-select.scss';
+
+//== Switch
+@import './app/shared/styles/custom/switch.scss';
+
+//== Upload file
+@import './app/shared/styles/custom/upload-file';
+
+//== Tree
+@import './app/shared/styles/custom/tree.scss';
+
+//== Toast
+@import './app/shared/styles/custom/toastr.scss';
+
+@import './app/shared/styles/custom/auth-layout/forms.scss';
+
+a {
+  cursor: pointer;
+
+  &.help {
+    color: #656565;
+    margin-left: 0.25rem;
+  }
+}
+
+div.content-heading {
+  small {
+    font-size: 16px !important;
+  }
+}
+
+div.c-checkbox {
+  & > label {
+    cursor: default;
+
+    & > input[type='checkbox'],
+    span {
+      cursor: default;
+    }
+  }
+}

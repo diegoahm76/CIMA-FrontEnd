@@ -1,0 +1,109 @@
+{
+  "develop": {
+    "Saludo": "Saludos en {{idioma}}",
+    "Hola": "Hola {{value}}!",
+    "Hola_mundo": "Hola mundo {{nombre}} {{apellido}}"
+  },
+  "http_codes": {
+    "401": "Usted no tiene acceso al recurso solicitado.",
+    "404": "No se encontró el recurso solicitado. Por favor intente más tarde o comuníqueselo al administrador del sistema.",
+    "422": "Se han encontrado errores en el formulario, por favor revíselo y envíelo nuevamente.",
+    "default": "Se produjo un error inesperado en la aplicación. Por favor intente más tarde o comuníqueselo al administrador del sistema."
+  },
+  "modal": {
+    "titles": {
+      "confirmation": "Confirmación"
+    }
+  },
+  "validation": {
+    "required": "Este campo es requerido",
+    "email": "El correo electrónico no es válido",
+    "date_format": "El formato de la fecha no es válido",
+    "pattern": "El valor no cumple el patrón requerido",
+    "equalTo": "El valor no coincide con la constraseña"
+  },
+  "server_messages": {
+    "Internal Server Error": "Se produjo un error inesperado en la aplicación. Por favor intente más tarde o comuníqueselo al administrador del sistema.",
+    "errores_de_formulario": "Se han encontrado errores en el formulario, por favor revíselo y envíelo nuevamente.",
+    "login_error": "La combinación e-mail/contraseña no es válida",
+    "recurso_no_encontrado": "No se encontró el recurso solicitado",
+    "no_se_encontro_el_registro_solicitado": "No se encontró el registro solicitado",
+    "no_autorizado": "Ud. no está autorizado para el recurso solicitado"
+  },
+  "selects": {
+    "loading": "cargando opciones...",
+    "select_an_option": "-- seleccione una opción --",
+    "select_an_or_some_options": "-- seleccione una o varias opciones --",
+    "select_no_items_found": "No se encontraron registros",
+    "select_the_state": "-- seleccione el departamento --"
+  },
+  "enums": {
+    "dominio": {
+      "estado": {
+        "inactivo": "inactivo",
+        "activo": "activo"
+      }
+    },
+    "user": {
+      "role": {
+        "admin": "admin",
+        "user": "usuario"
+      },
+      "status": {
+        "new": "nuevo",
+        "active": "activo",
+        "inactive": "inactivo"
+      }
+    }
+  },
+  "buttons": {
+    "submit": {
+      "guardar": "Guardar",
+      "guardando": "guardando...",
+      "enviar": "Enviar",
+      "enviando": "enviando...",
+      "ingresar": "Ingresar / Registrar",
+      "ingresando": "verificando..."
+    },
+    "cancel": {
+      "cancelar": "Cancelar",
+      "cerrar": "Cerrar"
+    },
+    "show_more": {
+      "ver_mas": "Ver más"
+    },
+    "edit": {
+      "editar": "Editar"
+    },
+    "delete": {
+      "borrar": "Borrar",
+      "borrando": "borrando..."
+    },
+    "back": {
+      "volver": "Volver"
+    }
+  },
+
+  "header": {
+    "search": {
+      "PLACEHOLDER": "Escribe y presiona enter.."
+    }
+  },
+  "offsidebar": {
+    "setting": {
+      "SETTINGS": "Configuración"
+    }
+  },
+  "sidebar": {
+    "WELCOME": "Bienvenido",
+    "heading": {
+      "HEADER": "Cabecera Menu"
+    },
+    "nav": {
+      "SINGLEVIEW": "Vista Simple"
+    }
+  },
+  "dashboard": {
+    "WELCOME": "Bienvenido"
+  }
+}

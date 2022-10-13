@@ -1,0 +1,28 @@
+<ng-container *ngIf="state$ | async as state">
+  <app-modal-confirm-ui
+    [status]="state.status"
+    [submitButton]="submitButton"
+    (closeClick)="closeClick.emit()"
+    (confirmClick)="confirm()"
+  >
+    <div body>
+      <app-application-error [error]="state.error"></app-application-error>
+
+      <p>Se borrará el registro de dominio controlado:</p>
+      <dl>
+        <dt>Valor</dt>
+        <dd>{{ domain.value }}</dd>
+        <dt>Tipo</dt>
+        <dd>{{ domain.type }}</dd>
+        <dt>Estado</dt>
+        <dd>
+          <div>
+            <app-status-badge [status]="domain.status"></app-status-badge>
+          </div>
+        </dd>
+      </dl>
+
+      <p class="mt-4">Por favor confirme la acción.</p>
+    </div>
+  </app-modal-confirm-ui>
+</ng-container>

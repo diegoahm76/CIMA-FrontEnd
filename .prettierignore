@@ -1,0 +1,9 @@
+node_modules
+src/main.ts
+src/test.ts
+src/app/app.component.ts
+src/app/core/translator/translator.service.ts
+src/app/shared/directives/flot/flot.directive.ts
+src/app/shared/directives/scrollable/scrollable.directive.ts
+src/app/layout/header/header.component.ts
+src/app/layout/sidebar/sidebar.component.ts

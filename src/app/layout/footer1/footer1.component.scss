@@ -1,0 +1,140 @@
+div.outter-container {
+  background-color: #ff2965;
+  padding-bottom: 40px;
+  margin-top: 100px;
+
+  div.inner-container {
+    & > div {
+      // @TODO: borrar
+      height: 368px;
+
+      background-color: #fff;
+      font-size: 1rem;
+      // margin-top: -100px;
+      border: 1px solid #36c;
+      border-radius: 10px;
+      //z-index: 9999;
+      padding: 40px 70px;
+      margin-top: -100px;
+
+      h3 {
+        color: #004884;
+      }
+
+      p {
+        margin-top: 3px;
+        margin-bottom: 3px;
+      }
+
+      ul.redes {
+        list-style: none;
+        padding-left: 0;
+
+        li {
+          display: inline-block;
+
+          &:not(:first-child) {
+            margin-left: 25px;
+          }
+
+          a {
+            &:hover {
+              text-decoration: none;
+            }
+
+            i {
+              width: 44px;
+              height: 44px;
+              display: flex;
+              justify-content: center !important;
+              background-color: #004884;
+              color: #fff;
+              padding-top: 14px;
+              border-radius: 50%;
+            }
+
+            div {
+              display: inline-block;
+              color: #004884;
+              font-weight: 500;
+              font-size: 1.1rem;
+              text-transform: uppercase;
+              margin-left: 6px;
+            }
+          }
+        }
+      }
+
+      ul.links {
+        font-size: 1.1rem;
+        list-style: none;
+        padding-left: 0;
+
+        li {
+          display: inline-block;
+
+          &:not(:first-child) {
+            margin-left: 25px;
+          }
+
+          a {
+            color: #004884;
+            font-weight: bold;
+            padding-right: 0;
+            padding-left: 0;
+
+            i {
+              display: inline-block;
+              background-color: #004884;
+              color: #fff;
+              width: 27px;
+              height: 27px;
+              border-radius: 50%;
+              padding: 6px;
+            }
+
+            div {
+              display: inline-block;
+              color: #004884;
+              font-weight: 500;
+              font-size: 1.1rem;
+              text-transform: uppercase;
+              margin-left: 6px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+div.outter-container-2 {
+  // @TODO: borrar
+  height: 75px;
+
+  background-color: #36c;
+}
+
+div.custom-footer {
+  color: #fff;
+  font-size: 16px;
+
+  a {
+    color: #fff;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  div.link {
+    width: 310px;
+    padding-left: 4px;
+    border-bottom: #d6d6d6 solid 1px;
+    margin-bottom: 5px;
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
+}

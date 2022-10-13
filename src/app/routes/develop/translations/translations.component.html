@@ -1,0 +1,18 @@
+<div class="content-heading">
+  <div>
+    Translations
+  </div>
+</div>
+
+<div class="card card-default">
+  <div class="card-header">
+    <strong>{{'develop.Saludo' | translate: params}}: </strong>
+    <span [translate]="'develop.Hola_mundo'" [translateParams]="{nombre: 'Pepe', apellido: 'Foo'}"></span>
+  </div>
+
+  <div class="card-body">
+    <p>translation1: {{translation1}}</p>
+    <br />
+    <p>translation2: {{translation2 | async}}</p>
+  </div>
+</div>

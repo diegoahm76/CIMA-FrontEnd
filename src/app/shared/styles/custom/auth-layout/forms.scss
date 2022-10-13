@@ -1,0 +1,19 @@
+div.auth-layout {
+  app-application-error {
+    & > div.alert {
+      margin-bottom: 1rem !important;
+    }
+  }
+
+  label.text-muted {
+    margin-bottom: 0;
+  }
+
+  app-field-error {
+    display: block;
+
+    div.text-danger {
+      margin-bottom: 3px;
+    }
+  }
+}

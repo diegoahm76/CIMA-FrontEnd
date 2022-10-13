@@ -1,0 +1,35 @@
+div.modal-dialog {
+  &.modal-xlg {
+    // max-width: 980px;
+    max-width: 96%;
+  }
+
+  div.modal-body {
+    app-application-error {
+      div.alert {
+        margin-bottom: 15px;
+      }
+    }
+
+    div.record-details {
+      div.form-group {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}
+
+dl {
+  margin-top: 15px;
+  margin-left: 30px;
+  margin-bottom: 10px;
+
+  & > dt {
+    float: left;
+    width: 160px;
+  }
+
+  & > dd {
+    display: grid;
+  }
+}

@@ -1,0 +1,7 @@
+<app-domain-details-ui
+  [type]="type"
+  [domain]="domain"
+  (editClick)="editClick.emit($event)"
+  (deleteClick)="deleteClick.emit($event)"
+  (modelUpdated)="modelUpdated.emit($event)"
+></app-domain-details-ui>

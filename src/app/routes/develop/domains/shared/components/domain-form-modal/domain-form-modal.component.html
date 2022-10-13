@@ -1,0 +1,91 @@
+<ng-container *ngIf="state$ | async as state">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">
+      {{ title }}
+    </h4>
+    <button
+      *ngIf="state.status !== storeStatus.LOADING"
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="closeClick.emit()"
+    >
+      <span>&times;</span>
+    </button>
+  </div>
+
+  <form
+    [formGroup]="form"
+    novalidate=""
+    (ngSubmit)="submit(form)"
+    class="form-horizontal"
+  >
+    <div class="modal-body">
+      <div class="row justify-content-xl-center">
+        <div class="col-xl-11">
+          <app-application-error [error]="state.error"></app-application-error>
+
+          <div class="text-center mb-3">
+            Los campos con <span class="text-danger">*</span> son requeridos
+          </div>
+
+          <div class="row form-group">
+            <label class="col-xl-3 col-form-label"> Tipo </label>
+            <div class="col-xl-9">
+              {{ domainTypeValues[type] }}
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <label class="col-xl-3 col-form-label"> Elemento padre </label>
+            <div class="col-xl-9">
+              {{ parentModel.value }}
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <app-field-error
+              [errors]="form.get('value').errors"
+              [visible]="form.get('value').dirty"
+              class="offset-xl-3 col-xl-9"
+            ></app-field-error>
+            <label class="col-xl-3 col-form-label"> Valor<span>*</span> </label>
+            <div class="col-xl-9">
+              <input type="text" formControlName="value" class="form-control" />
+            </div>
+          </div>
+
+          <!-- <div><strong>values and errors:</strong></div>
+          <div *ngFor="let item of form.controls | keyvalue">
+            {{item.key}}: {{form.value[item.key] | json}} - {{item.value.errors | json}}
+          </div>
+          <div class="mt-2"><strong>filtered values:</strong></div>
+          <div>{{ form.value | json }}</div> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button
+        type="submit"
+        [disabled]="state.status === storeStatus.LOADING || form.invalid"
+        class="btn btn-primary mr-1 mb-1"
+      >
+        <i
+          [ngClass]="state.status | loadingIconClass: 'fas fa-check-circle'"
+        ></i>
+        {{ submitButton.label$ | async }}
+      </button>
+
+      <button
+        type="button"
+        [disabled]="state.status === storeStatus.LOADING"
+        (click)="closeClick.emit()"
+        class="btn btn-secondary mr-1 mb-1"
+      >
+        <i class="fas fa-times-circle"></i>
+        {{ 'buttons.cancel.cerrar' | translate }}
+      </button>
+    </div>
+  </form>
+</ng-container>

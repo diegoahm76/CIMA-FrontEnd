@@ -1,0 +1,33 @@
+<div class="auth-layout">
+  <div class="wrapper">
+    <div class="block-center mt-4 wd-xl">
+      <div class="logo">
+        <picture>
+          <source
+            srcset="https://estilos.minambiente.gov.co/minambiente.avif"
+            type="image/avif"
+          />
+          <img
+            src="https://estilos.minambiente.gov.co/minambiente.png"
+            alt=""
+          />
+        </picture>
+      </div>
+
+      <!-- START card-->
+      <div class="card card-flat">
+        <div class="card-body">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+      <!-- END card-->
+
+      <div class="p-3 text-center">
+        <span>&copy;</span>
+        <span>{{ settingsService.getAppSetting('year') }}</span>
+        <span class="mx-2">-</span>
+        <span>{{ settingsService.getAppSetting('name') }}</span>
+      </div>
+    </div>
+  </div>
+</div>
