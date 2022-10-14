@@ -1,4 +1,13 @@
 <form [formGroup]="form" novalidate="" class="filters-form">
+  <nav aria-label="Miga de pan predeterminada de tres niveles">
+    <ul class="breadcrumb-govco">
+      <li class="breadcrumb-item-govco"><a href="#">Inicio</a></li>
+      <li class="breadcrumb-item-govco"><a href="#">Impacto</a></li>
+      <li class="breadcrumb-item-govco">
+        <a href="#">Prioridades de gobierno</a>
+      </li>
+    </ul>
+  </nav>
   <div class="row">
     <div class="col-6">
       <div class="card card-default">
@@ -18,7 +27,7 @@
           </div>
           <div class="col-10">
             <div class="card card-default">
-              <div class="card-body">Numero de arboles</div>
+              <div class="card-body" style="size: 5em">{{ '180.000.000' }}</div>
             </div>
           </div>
         </div>

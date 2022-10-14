@@ -11,6 +11,12 @@ const menuItems = [
       link: '/inicio',
       icon: 'icon-home',
     },
+    {
+      id: 'sidebar.submenu.dashboard',
+      text: 'Submenu',
+      link: '/submenu',
+      icon: 'icon-list',
+    },
   ],
   [
     {

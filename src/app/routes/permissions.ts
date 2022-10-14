@@ -5,6 +5,7 @@ export const permissions: Permissions = {
     // Modules
 
     'module.home': [{action: 'view'}],
+    'module.submenu': [{action: 'view'}],
 
     'module.admin.users': [{action: 'view'}],
 
@@ -21,6 +22,7 @@ export const permissions: Permissions = {
 
     'sidebar.home.heading': [{action: 'view'}],
     'sidebar.home.dashboard': [{action: 'view'}],
+    'sidebar.submenu.dashboard': [{action: 'view'}],
 
     'sidebar.admin.heading': [{action: 'view'}],
     'sidebar.admin.users': [{action: 'view'}],

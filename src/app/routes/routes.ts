@@ -23,6 +23,11 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./home/home.module').then((m) => m.HomeModule),
       },
+      {
+        path: 'submenu',
+        loadChildren: () =>
+          import('./submenu/submenu.module').then((m) => m.SubmenuModule),
+      },
       // {
       //   path: 'cuenta',
       //   loadChildren: () => import('./account/account.module').then(m => m.AccountModule)
