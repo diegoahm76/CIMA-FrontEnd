@@ -11,12 +11,12 @@ const menuItems = [
       link: '/inicio',
       icon: 'icon-home',
     },
-    {
-      id: 'sidebar.submenu.dashboard',
-      text: 'Submenu',
-      link: '/submenu',
-      icon: 'icon-list',
-    },
+    // {
+    //   id: 'sidebar.submenu.dashboard',
+    //   text: 'Submenu',
+    //   link: '/submenu',
+    //   icon: 'icon-list',
+    // },
   ],
   [
     {
@@ -27,25 +27,25 @@ const menuItems = [
     {
       id: 'module.admin.users',
       text: 'Desempeño y gestión institucional',
-      link: '/a',
+      link: '/submodule',
     },
     {
       id: 'module.admin.users',
       text: 'Estado de los recursos naturales',
-      link: '/b',
+      link: '/submodule',
     },
     {
       id: 'module.admin.users',
       text: 'Prioridades de gobierno',
-      link: '/c',
+      link: '/submodule',
     },
   ],
   [
-    {
-      id: 'sidebar.develop.heading',
-      text: 'Develop',
-      heading: true,
-    },
+    // {
+    //   id: 'sidebar.develop.heading',
+    //   text: 'Develop',
+    //   heading: true,
+    // },
     // {
     //   id: 'sidebar.develop.users',
     //   text: 'CRUD',
@@ -64,12 +64,12 @@ const menuItems = [
     //   link: '/develop/charts',
     //   icon: 'icon-chart',
     // },
-    {
-      id: 'sidebar.develop.visor',
-      text: 'Visor geográfico',
-      link: '/develop/visor',
-      icon: 'icon-globe-alt',
-    },
+    // {
+    //   id: 'sidebar.develop.visor',
+    //   text: 'Visor geográfico',
+    //   link: '/develop/visor',
+    //   icon: 'icon-globe-alt',
+    // },
     // {
     //   id: 'sidebar.develop.domains',
     //   text: 'Dominios controlados',

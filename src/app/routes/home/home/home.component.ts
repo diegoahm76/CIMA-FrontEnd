@@ -10,6 +10,6 @@ export class HomeComponent {
   constructor(private router: Router) {}
 
   redirectToLink(option) {
-    this.router.navigateByUrl('submenu', {state: option});
+    this.router.navigateByUrl('submodule', {state: {module: option}});
   }
 }

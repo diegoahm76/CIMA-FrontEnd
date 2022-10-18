@@ -1,7 +1,9 @@
 <nav aria-label="Miga de pan predeterminada de tres niveles">
   <ul class="breadcrumb-govco">
     <li class="breadcrumb-item-govco"><a href="/inicio">Inicio</a></li>
-    <li class="breadcrumb-item-govco active" aria-current="page">Submenu</li>
+    <li class="breadcrumb-item-govco active" aria-current="page">
+      {{ module }}
+    </li>
   </ul>
 </nav>
 <div class="col-12" align="center">
@@ -9,8 +11,8 @@
     <div class="col-4">
       <a
         class="icono-tarjeta-govco horizontal-tarjeta-govco"
-        href=""
         title="descripción donde redirige el enlace"
+        (click)="redirectToLink('Gestión')"
       >
         <div class="container-icono-tarjeta-govco">
           <img
@@ -26,8 +28,8 @@
     <div class="col-4">
       <a
         class="icono-tarjeta-govco horizontal-tarjeta-govco"
-        href=""
         title="descripción donde redirige el enlace"
+        (click)="redirectToLink('Impacto')"
       >
         <div class="container-icono-tarjeta-govco">
           <img
@@ -43,8 +45,8 @@
     <div class="col-4">
       <a
         class="icono-tarjeta-govco horizontal-tarjeta-govco"
-        href=""
         title="descripción donde redirige el enlace"
+        (click)="redirectToLink('Nacional')"
       >
         <div class="container-icono-tarjeta-govco">
           <img

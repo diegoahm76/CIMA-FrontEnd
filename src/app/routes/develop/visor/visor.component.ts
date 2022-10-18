@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Params} from '@angular/router';
+import {Params, Router} from '@angular/router';
 import {DevelopUserRoleValues} from '@app/routes/shared/enums';
 import {StoreStatus} from '@app/shared/enums';
 import {Model} from '@app/shared/models';
@@ -22,7 +22,8 @@ declare var Visor: any;
 export class VisorComponent implements OnInit {
   visor: typeof Visor;
   searchClick: EventEmitter<Params>;
-
+  module: string = '';
+  submodule: string = '';
   rolesState: Observable<StaticSelectOptionsState>;
   datesList: Array<Model | {strId: string; _label: string}>;
   scaleList: Array<Model | {strId: string; _label: string}>;
@@ -41,14 +42,17 @@ export class VisorComponent implements OnInit {
   form: FormGroup;
   bsConfig: Partial<BsDatepickerConfig>;
   colorTheme = 'theme-green';
-
+  dataUrlConstructor: any;
+  metricsList: {strId: string; _label: string}[];
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private translate: TranslateService,
     private staticSelectOptionsService: StaticSelectOptionsService,
     private formService: FormService,
     private logger: NGXLogger
   ) {
+    this.dataUrlConstructor = this.router.getCurrentNavigation();
     this.searchClick = new EventEmitter<Params>();
     this.newInModalClick = new EventEmitter<void>();
     this.newClick = new EventEmitter<void>();
@@ -56,6 +60,14 @@ export class VisorComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.module =
+      this.dataUrlConstructor.extras.state == undefined
+        ? ''
+        : this.dataUrlConstructor.extras.state.module;
+    this.submodule =
+      this.dataUrlConstructor.extras.state == undefined
+        ? ''
+        : this.dataUrlConstructor.extras.state.submodule;
     const rolesUtil = this.staticSelectOptionsService.getInstance('roles');
     this.rolesState = rolesUtil.getState();
     rolesUtil.next({
@@ -71,6 +83,52 @@ export class VisorComponent implements OnInit {
   }
 
   loadListForDefault() {
+    this.metricsList = [
+      {
+        strId: '0',
+        _label:
+          'Porcentaje de avance de la ejecución presupuestal de proyectos desarrollados por las autoridades ambientales CARs',
+      },
+      {
+        strId: '1',
+        _label:
+          'Proyectos impuesto al carbono  que aportan a la meta de 180 millones de árboles',
+      },
+      {
+        strId: '2',
+        _label: 'Número de árboles sembrados a nivel nacional por año',
+      },
+      {
+        strId: '3',
+        _label:
+          'Avance porcentual de la meta de árboles a sembrar por CARS  (vigencia  gobierno 2018-2022)',
+      },
+      {
+        strId: '4',
+        _label:
+          'Número actualizado del total  de arboles sembrados en el territorio nacional',
+      },
+      {
+        strId: '5',
+        _label:
+          'Número actualizado del total  de arboles sembrados en el territorio nacional',
+      },
+      {
+        strId: '6',
+        _label:
+          'Número actualizado del total  de arboles sembrados por Autoridad Ambiental',
+      },
+      {
+        strId: '7',
+        _label:
+          'Número actualizado del total  de arboles sembrados por Departamento',
+      },
+      {
+        strId: '8',
+        _label:
+          'Número actualizado del total  de arboles sembrados por region PND',
+      },
+    ];
     this.datesList = [
       {strId: '0', _label: 'Mensual'},
       {strId: '1', _label: 'Anual'},
@@ -122,6 +180,7 @@ export class VisorComponent implements OnInit {
   private initForm() {
     // Modelo asociado al formulario
     this.form = this.fb.group({
+      mtric: [''],
       scale: [''],
       dpto: [''],
       mcpio: [''],
@@ -237,6 +296,12 @@ export class VisorComponent implements OnInit {
     }
 
     this.visor._loadGeoJson(dataGeoCopy, layers);
+  }
+
+  redirectToLink(option) {
+    this.router.navigateByUrl(`/${option}`, {
+      state: this.dataUrlConstructor.extras.state,
+    });
   }
 
   removeMark() {}

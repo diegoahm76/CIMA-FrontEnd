@@ -24,9 +24,9 @@ export const routes: Routes = [
           import('./home/home.module').then((m) => m.HomeModule),
       },
       {
-        path: 'submenu',
+        path: 'submodule',
         loadChildren: () =>
-          import('./submenu/submenu.module').then((m) => m.SubmenuModule),
+          import('./submodule/submodule.module').then((m) => m.SubmoduleModule),
       },
       // {
       //   path: 'cuenta',

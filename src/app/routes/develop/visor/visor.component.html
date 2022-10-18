@@ -1,10 +1,16 @@
 <form [formGroup]="form" novalidate="" class="filters-form">
   <nav aria-label="Miga de pan predeterminada de tres niveles">
     <ul class="breadcrumb-govco">
-      <li class="breadcrumb-item-govco"><a href="#">Inicio</a></li>
-      <li class="breadcrumb-item-govco"><a href="#">Impacto</a></li>
       <li class="breadcrumb-item-govco">
-        <a href="#">Prioridades de gobierno</a>
+        <a class="link-click" (click)="redirectToLink('inicio')">Inicio</a>
+      </li>
+      <li class="breadcrumb-item-govco">
+        <a class="link-click" (click)="redirectToLink('submodule')">{{
+          module
+        }}</a>
+      </li>
+      <li class="breadcrumb-item-govco active" aria-current="page">
+        {{ submodule }}
       </li>
     </ul>
   </nav>
@@ -52,6 +58,19 @@
     </div>
 
     <div class="col-2">
+      <div class="row mb-1">
+        <div class="col-12">
+          <label>Métrica</label>
+        </div>
+        <div class="col-md-12">
+          <app-select
+            placeholder="Seleccionar Métrica"
+            formControlName="mtric"
+            [list]="metricsList"
+            [small]="true"
+          ></app-select>
+        </div>
+      </div>
       <div class="row mb-1">
         <div class="col-12">
           <label>Escala</label>
