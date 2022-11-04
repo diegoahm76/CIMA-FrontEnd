@@ -1,224 +1,218 @@
-<form [formGroup]="form" novalidate="" class="filters-form">
-  <nav aria-label="Miga de pan predeterminada de tres niveles">
-    <ul class="breadcrumb-govco">
-      <li class="breadcrumb-item-govco">
-        <a class="link-click" (click)="redirectToLink('inicio')">Inicio</a>
-      </li>
-      <li class="breadcrumb-item-govco">
-        <a class="link-click" (click)="redirectToLink('submodule')">{{
-          module
-        }}</a>
-      </li>
-      <li class="breadcrumb-item-govco active" aria-current="page">
-        {{ submodule }}
-      </li>
-    </ul>
-  </nav>
+<div class="contenedor-pb">
   <div class="row">
-    <div class="col-6">
+    <div class="col-12">
       <div class="card card-default">
         <div class="card-body">
-          <div id="sidebar" style="display: none"></div>
-          <div id="visor1" style="height: 600px"></div>
+          <iframe
+            title="MMAMA0001-2-3-5-6"
+            width="100%"
+            height="820px"
+            src="https://app.powerbi.com/view?r=eyJrIjoiYmU3MGU1MmMtYmE2Yy00YjRkLTllNjMtMmEwYzg3MDliZjkxIiwidCI6IjJhODgyOWVlLTIyNDYtNDYxZS04NmJkLWFhYzQ0YThhODExMyJ9&pageName=ReportSection75faddec6299a82723d0"
+            frameborder="0"
+            allowFullScreen="false"
+          >
+          </iframe>
         </div>
       </div>
     </div>
-    <div class="col-4">
-      <div class="col-12">
-        <div class="row">
-          <div class="col-2">
-            <div class="card card-default" align="center">
-              <div class="card-body"><em class="icon-picture"></em></div>
-            </div>
-          </div>
-          <div class="col-10">
-            <div class="card card-default" align="center">
-              <div class="card-body p-0" style="font-size: 2rem">
-                {{ '180.000.000' }}
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-default">
+        <div class="card-body">
+          <iframe
+            title="MMAMA0001-2-3-5-6"
+            width="100%"
+            height="820px"
+            src="https://app.powerbi.com/view?r=eyJrIjoiYmU3MGU1MmMtYmE2Yy00YjRkLTllNjMtMmEwYzg3MDliZjkxIiwidCI6IjJhODgyOWVlLTIyNDYtNDYxZS04NmJkLWFhYzQ0YThhODExMyJ9&pageName=ReportSection466720021c3a404e70e9"
+            frameborder="0"
+            allowFullScreen="false"
+          >
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div [ngClass]="isCollapsed ? 'contenedor-visor-collapse' : 'contenedor-visor'">
+  <div class="card card-default">
+    <div class="card-body">
+      <div id="visor1" style="height: 1710px"></div>
+    </div>
+  </div>
+</div>
+<div
+  [ngClass]="isCollapsed ? 'contenedor-filter-collapse' : 'contenedor-filter'"
+>
+  <div class="row">
+    <form [formGroup]="form" novalidate="" class="filters-form">
+      <div class="col-1">
+        <button
+          type="button"
+          class="btn btn-primary icon-arrow-right ml-0"
+          (click)="isCollapsed = !isCollapsed"
+        ></button>
+      </div>
+      <div class="col-11 ml-1">
+        <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+          <div class="well well-lg card card-block card-header">
+            <!-- <div class="row mb-1">
+                  <div class="col-12">
+                    <label>Métrica</label>
+                  </div>
+                  <div class="col-md-12">
+                    <app-select
+                      placeholder="Seleccionar Métrica"
+                      formControlName="mtric"
+                      [list]="metricsList"
+                      [small]="true"
+                    ></app-select>
+                  </div>
+                </div> -->
+            <!-- <div class="checkbox-seleccion-govco m-2" *ngFor="let metric of metricsList">
+                  <div class="row">
+                      <input id="metric.strId" type="checkbox"/>
+                      <label for="opt1">{{metric._label}}</label>
+                  </div>
+                </div> -->
+            <div id="collapseBasic">
+              <div class="well well-lg card card-block card-header">
+                <span class="icon-arrow-right"></span
+                >{{ metricsList[1]._label }}
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="card card-default">
-            <div class="card-body">
-              <iframe
-                title="MMAMA0001-2-3-5-6"
-                width="550"
-                height="500"
-                src="https://app.powerbi.com/view?r=eyJrIjoiYmU3MGU1MmMtYmE2Yy00YjRkLTllNjMtMmEwYzg3MDliZjkxIiwidCI6IjJhODgyOWVlLTIyNDYtNDYxZS04NmJkLWFhYzQ0YThhODExMyJ9&pageName=ReportSection6c60298ad348bb973e00"
-                frameborder="0"
-                allowFullScreen="false"
-              >
-              </iframe>
+            <div (click)="isCollapsedOption(1)">
+              <div class="well well-lg card card-block card-header">
+                <span class="icon-arrow-right"></span
+                >{{ metricsList[0]._label }}
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-2">
-      <!-- <div class="row mb-1">
-        <div class="col-12">
-          <label>Métrica</label>
-        </div>
-        <div class="col-md-12">
-          <app-select
-            placeholder="Seleccionar Métrica"
-            formControlName="mtric"
-            [list]="metricsList"
-            [small]="true"
-          ></app-select>
-        </div>
-      </div> -->
-      <div class="row mb-1">
-        <div class="col-12">
-          <label>Escala</label>
-        </div>
-        <div class="col-md-12">
-          <app-select
-            placeholder="Seleccionar Escala"
-            formControlName="scale"
-            [list]="scaleList"
-            [small]="true"
-          ></app-select>
-        </div>
-      </div>
-      <div class="row mb-1" *ngIf="form.value.scale == '1'">
-        <div class="col-12">
-          <label>Departamento</label>
-        </div>
-        <div class="col-md-12">
-          <app-select
-            placeholder="Seleccionar Departamento"
-            formControlName="dpto"
-            [list]="departamentosList"
-            [small]="true"
-          ></app-select>
-        </div>
-      </div>
-      <div class="row mb-1" *ngIf="form.value.scale == '2'">
-        <div class="col-12">
-          <label>Municipio</label>
-        </div>
-        <div class="col-md-12">
-          <app-select
-            placeholder="Seleccionar Municipio"
-            formControlName="mcpio"
-            [list]="municipiosList"
-            [small]="true"
-          ></app-select>
-        </div>
-      </div>
-      <div class="row mb-1">
-        <div class="col-12">
-          <label>Año</label>
-        </div>
-        <div class="col-12">
-          <input
-            type="text"
-            formControlName="dateYYYY"
-            minMode="year"
-            placeholder="Selecionar año"
-            (bsValueChange)="onChangeDateYYYY($event)"
-            class="form-control"
-            [bsConfig]="{dateInputFormat: 'YYYY'}"
-            bsDatepicker
-          />
-        </div>
-      </div>
-      <div class="row mb-1">
-        <div class="col-12">
-          <button
-            type="button"
-            style="width: inherit"
-            (click)="getPointsForFilters()"
-            class="btn mb-sm btn-success mr-1 mb-1 color-marine-gov"
-          >
-            Filtrar
-          </button>
-        </div>
-      </div>
-      <div class="row my-2">
-        <div class="col-12">
-          <div class="card card-default">
-            <div class="card-body">
-              <div class="row">
+            <div id="collapseBasic" [collapse]="isCollapsedOne">
+              <div class="row mb-1">
                 <div class="col-12">
-                  <span
-                    >Fecha de corte de información: DD/MM/YYYY
-                    <em class="icon-folder-alt"></em>
-                  </span>
+                  <label>Año</label>
+                </div>
+                <div class="col-12">
+                  <input
+                    type="text"
+                    formControlName="dateYYYY"
+                    minMode="year"
+                    placeholder="Selecionar año"
+                    (bsValueChange)="onChangeDateYYYY($event)"
+                    class="form-control"
+                    [bsConfig]="{dateInputFormat: 'YYYY'}"
+                    bsDatepicker
+                  />
                 </div>
               </div>
-              <div class="row">
-                <div class="col-5">
+            </div>
+            <div (click)="isCollapsedOption(2)">
+              <div class="well well-lg card card-block card-header">
+                <span class="icon-arrow-right"></span
+                >{{ metricsList[2]._label }}
+              </div>
+            </div>
+            <div id="collapseBasic" [collapse]="isCollapsedTwo">
+              <div class="row mb-1">
+                <div class="col-12">
+                  <label>Departamento</label>
+                </div>
+                <div class="col-md-12">
                   <app-select
-                    placeholder="Formato"
-                    formControlName="fileTypes"
-                    [list]="fileTypesList"
+                    placeholder="Seleccionar Departamento"
+                    formControlName="dpto"
+                    [list]="departamentosList"
                     [small]="true"
                   ></app-select>
                 </div>
-                <div class="col-7">
-                  <button
-                    type="button"
-                    class="btn mb-sm btn-success mr-1 mb-1 color-marine-gov"
-                  >
-                    Exportar
-                    <em class="icon-action-redo"></em>
-                  </button>
+              </div>
+            </div>
+            <div (click)="isCollapsedOption(3)">
+              <div class="well well-lg card card-block card-header">
+                <span class="icon-arrow-right"></span
+                >{{ metricsList[3]._label }}
+              </div>
+            </div>
+            <div id="collapseBasic" [collapse]="isCollapsedThree">
+              <div class="row mb-1">
+                <div class="col-12">
+                  <label>Municipio</label>
                 </div>
+                <div class="col-md-12">
+                  <app-select
+                    placeholder="Seleccionar Municipio"
+                    formControlName="mcpio"
+                    [list]="municipiosList"
+                    [small]="true"
+                  ></app-select>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="row mb-1">
+                  <div class="col-12">
+                    <label>Escala</label>
+                  </div>
+                  <div class="col-md-12">
+                    <app-select
+                      placeholder="Seleccionar Escala"
+                      formControlName="scale"
+                      [list]="scaleList"
+                      [small]="true"
+                    ></app-select>
+                  </div>
+                </div> -->
+
+            <div class="row mb-1">
+              <div class="col-12">
+                <button
+                  type="button"
+                  style="width: inherit"
+                  (click)="getPointsForFilters()"
+                  class="btn mb-sm btn-success mr-1 mb-1 color-marine-gov"
+                >
+                  Filtrar
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </form>
   </div>
-</form>
-
-<div class="row">
-  <div class="col-6">
-    <div class="card card-default">
-      <div class="card-body">
-        <iframe
-          title="MMAMA0001-2-3-5-6"
-          width="830"
-          height="500"
-          src="https://app.powerbi.com/view?r=eyJrIjoiYmU3MGU1MmMtYmE2Yy00YjRkLTllNjMtMmEwYzg3MDliZjkxIiwidCI6IjJhODgyOWVlLTIyNDYtNDYxZS04NmJkLWFhYzQ0YThhODExMyJ9&pageName=ReportSection75faddec6299a82723d0"
-          frameborder="0"
-          allowFullScreen="false"
-        >
-        </iframe>
-      </div>
-    </div>
-  </div>
-  <div class="col-4">
-    <div class="card card-default">
-      <div class="card-body">
-        <iframe
-          title="MMAMA0001-2-3-5-6"
-          width="550"
-          height="500"
-          src="https://app.powerbi.com/view?r=eyJrIjoiYmU3MGU1MmMtYmE2Yy00YjRkLTllNjMtMmEwYzg3MDliZjkxIiwidCI6IjJhODgyOWVlLTIyNDYtNDYxZS04NmJkLWFhYzQ0YThhODExMyJ9&pageName=ReportSection466720021c3a404e70e9"
-          frameborder="0"
-          allowFullScreen="false"
-        >
-        </iframe>
-      </div>
-    </div>
-  </div>
-  <div class="col-2"></div>
 </div>
-
-<!-- <div class="col-12">
-  <app-upload-local-file
-    [acceptedFileTypes]="['application/zip']"
-    [expectedTypes]="['ZIP']"
-    [expectedTypesMap]="{'application/zip': '.zip'}"
-    (fileAdded)="fileAdded($event)"
-  ></app-upload-local-file>
-</div> -->
+<div class="contenedor-pb">
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-default">
+        <div class="card-body">
+          <iframe
+            title="MMAMA0001-2-3-5-6"
+            width="100%"
+            height="820px"
+            src="https://app.powerbi.com/view?r=eyJrIjoiYmU3MGU1MmMtYmE2Yy00YjRkLTllNjMtMmEwYzg3MDliZjkxIiwidCI6IjJhODgyOWVlLTIyNDYtNDYxZS04NmJkLWFhYzQ0YThhODExMyJ9&pageName=ReportSection6c60298ad348bb973e00"
+            frameborder="0"
+            allowFullScreen="false"
+          >
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-default">
+        <div class="card-body">
+          <iframe
+            title="MMAMA0001-2-3-5-6"
+            width="100%"
+            height="820px"
+            src="https://app.powerbi.com/view?r=eyJrIjoiYmU3MGU1MmMtYmE2Yy00YjRkLTllNjMtMmEwYzg3MDliZjkxIiwidCI6IjJhODgyOWVlLTIyNDYtNDYxZS04NmJkLWFhYzQ0YThhODExMyJ9&pageName=ReportSection466720021c3a404e70e9"
+            frameborder="0"
+            allowFullScreen="false"
+          >
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
