@@ -6,9 +6,10 @@ import {Observable} from 'rxjs';
   providedIn: 'root',
 })
 export class TreesService {
+  private url = 'http://localhost:8000';
   constructor(private httpClient: HttpClient) {}
 
   getTrees(año): Observable<any> {
-    return this.httpClient.get(`/trees/getByYear/${año}`);
+    return this.httpClient.get(`${this.url}/trees/getByYear/${año}`);
   }
 }
