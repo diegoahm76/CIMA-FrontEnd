@@ -44,19 +44,17 @@
 <div
   [ngClass]="isCollapsed ? 'contenedor-filter-collapse' : 'contenedor-filter'"
 >
-  <div class="row">
-    <form [formGroup]="form" novalidate="" class="filters-form">
-      <div class="col-1">
-        <button
-          type="button"
-          class="btn btn-primary icon-arrow-right ml-0"
-          (click)="isCollapsed = !isCollapsed"
-        ></button>
-      </div>
-      <div class="col-11 ml-1">
-        <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
-          <div class="well well-lg card card-block card-header">
-            <!-- <div class="row mb-1">
+  <form [formGroup]="form" novalidate="" class="filters-form">
+    <div class="col-12">
+      <button
+        style="width: inherit"
+        type="button"
+        class="btn mb-sm btn-primary m-1 color-marine-gov"
+        (click)="isCollapsed = !isCollapsed"
+      ></button>
+      <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+        <div class="well well-lg card card-block card-header">
+          <!-- <div class="row mb-1">
                   <div class="col-12">
                     <label>Métrica</label>
                   </div>
@@ -69,116 +67,129 @@
                     ></app-select>
                   </div>
                 </div> -->
-            <!-- <div class="checkbox-seleccion-govco m-2" *ngFor="let metric of metricsList">
+          <!-- <div class="checkbox-seleccion-govco m-2" *ngFor="let metric of metricsList">
                   <div class="row">
                       <input id="metric.strId" type="checkbox"/>
                       <label for="opt1">{{metric._label}}</label>
                   </div>
                 </div> -->
-            <div id="collapseBasic">
-              <div class="well well-lg card card-block card-header">
-                <span class="icon-arrow-right"></span
-                >{{ metricsList[1]._label }}
-              </div>
+          <div id="collapseBasic">
+            <div class="well well-lg card card-block card-header">
+              {{ metricsList[1]._label }}
             </div>
-            <div (click)="isCollapsedOption(1)">
-              <div class="well well-lg card card-block card-header">
-                <span class="icon-arrow-right"></span
-                >{{ metricsList[0]._label }}
-              </div>
+          </div>
+          <div (click)="isCollapsedOption(1)" class="cursor-pointer">
+            <div class="well well-lg card card-block card-header">
+              {{ metricsList[0]._label }}
             </div>
-            <div id="collapseBasic" [collapse]="isCollapsedOne">
-              <div class="row mb-1">
-                <div class="col-12">
-                  <label>Año</label>
-                </div>
-                <div class="col-12">
-                  <input
-                    type="text"
-                    formControlName="dateYYYY"
-                    minMode="year"
-                    placeholder="Selecionar año"
-                    (bsValueChange)="onChangeDateYYYY($event)"
-                    class="form-control"
-                    [bsConfig]="{dateInputFormat: 'YYYY'}"
-                    bsDatepicker
-                  />
-                </div>
-              </div>
-            </div>
-            <div (click)="isCollapsedOption(2)">
-              <div class="well well-lg card card-block card-header">
-                <span class="icon-arrow-right"></span
-                >{{ metricsList[2]._label }}
-              </div>
-            </div>
-            <div id="collapseBasic" [collapse]="isCollapsedTwo">
-              <div class="row mb-1">
-                <div class="col-12">
-                  <label>Departamento</label>
-                </div>
-                <div class="col-md-12">
-                  <app-select
-                    placeholder="Seleccionar Departamento"
-                    formControlName="dpto"
-                    [list]="departamentosList"
-                    [small]="true"
-                  ></app-select>
-                </div>
-              </div>
-            </div>
-            <div (click)="isCollapsedOption(3)">
-              <div class="well well-lg card card-block card-header">
-                <span class="icon-arrow-right"></span
-                >{{ metricsList[3]._label }}
-              </div>
-            </div>
-            <div id="collapseBasic" [collapse]="isCollapsedThree">
-              <div class="row mb-1">
-                <div class="col-12">
-                  <label>Municipio</label>
-                </div>
-                <div class="col-md-12">
-                  <app-select
-                    placeholder="Seleccionar Municipio"
-                    formControlName="mcpio"
-                    [list]="municipiosList"
-                    [small]="true"
-                  ></app-select>
-                </div>
-              </div>
-            </div>
-            <!-- <div class="row mb-1">
-                  <div class="col-12">
-                    <label>Escala</label>
-                  </div>
-                  <div class="col-md-12">
-                    <app-select
-                      placeholder="Seleccionar Escala"
-                      formControlName="scale"
-                      [list]="scaleList"
-                      [small]="true"
-                    ></app-select>
-                  </div>
-                </div> -->
-
+          </div>
+          <div id="collapseBasic" [collapse]="isCollapsedOne">
             <div class="row mb-1">
               <div class="col-12">
-                <button
-                  type="button"
-                  style="width: inherit"
-                  (click)="getPointsForFilters()"
-                  class="btn mb-sm btn-success mr-1 mb-1 color-marine-gov"
-                >
-                  Filtrar
-                </button>
+                <label>Año</label>
               </div>
+              <div class="col-12">
+                <input
+                  type="text"
+                  formControlName="dateYYYY"
+                  minMode="year"
+                  placeholder="Selecionar año"
+                  (bsValueChange)="onChangeDateYYYY($event)"
+                  class="form-control"
+                  [bsConfig]="{dateInputFormat: 'YYYY'}"
+                  bsDatepicker
+                />
+              </div>
+            </div>
+          </div>
+          <div (click)="isCollapsedOption(2)" class="cursor-pointer">
+            <div class="well well-lg card card-block card-header">
+              {{ metricsList[2]._label }}
+            </div>
+          </div>
+          <div id="collapseBasic" [collapse]="isCollapsedTwo">
+            <div class="row mb-1">
+              <div class="col-12">
+                <label>Departamento</label>
+              </div>
+              <div class="col-md-12">
+                <app-select
+                  placeholder="Seleccionar Departamento"
+                  formControlName="dpto"
+                  [list]="departamentosList"
+                  [small]="true"
+                ></app-select>
+              </div>
+            </div>
+          </div>
+          <div (click)="isCollapsedOption(3)" class="cursor-pointer">
+            <div class="well well-lg card card-block card-header">
+              {{ metricsList[3]._label }}
+            </div>
+          </div>
+          <div id="collapseBasic" [collapse]="isCollapsedThree">
+            <div class="row mb-1">
+              <div class="col-12">
+                <label>Municipio</label>
+              </div>
+              <div class="col-md-12">
+                <app-select
+                  placeholder="Seleccionar Municipio"
+                  formControlName="mcpio"
+                  [list]="municipiosList"
+                  [small]="true"
+                ></app-select>
+              </div>
+            </div>
+          </div>
+          <div (click)="isCollapsedOption(4)" class="cursor-pointer">
+            <div class="well well-lg card card-block card-header">
+              {{ metricsList[4]._label }}
+            </div>
+          </div>
+          <div id="collapseBasic" [collapse]="isCollapsedThree">
+            <div class="row mb-1"></div>
+          </div>
+          <div (click)="isCollapsedOption(5)" class="cursor-pointer">
+            <div class="well well-lg card card-block card-header">
+              {{ metricsList[5]._label }}
+            </div>
+          </div>
+          <div id="collapseBasic" [collapse]="isCollapsedThree">
+            <div class="row mb-1"></div>
+          </div>
+          <div (click)="isCollapsedOption(6)" class="cursor-pointer">
+            <div class="well well-lg card card-block card-header">
+              {{ metricsList[6]._label }}
+            </div>
+          </div>
+          <div id="collapseBasic" [collapse]="isCollapsedThree">
+            <div class="row mb-1"></div>
+          </div>
+          <div (click)="isCollapsedOption(7)" class="cursor-pointer">
+            <div class="well well-lg card card-block card-header">
+              {{ metricsList[7]._label }}
+            </div>
+          </div>
+          <div id="collapseBasic" [collapse]="isCollapsedThree">
+            <div class="row mb-1"></div>
+          </div>
+          <div class="row m-1">
+            <div class="col-12">
+              <button
+                type="button"
+                style="width: inherit"
+                (click)="getPointsForFilters()"
+                class="btn mb-sm btn-primary mr-1 mb-1 color-marine-gov"
+              >
+                Filtrar
+              </button>
             </div>
           </div>
         </div>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
 </div>
 <div class="contenedor-pb">
   <div class="row">

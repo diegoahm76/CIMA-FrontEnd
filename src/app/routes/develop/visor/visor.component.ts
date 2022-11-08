@@ -98,7 +98,7 @@ export class VisorComponent implements OnInit {
     this.metricsList = [
       {
         strId: '0',
-        _label: 'N° de árboles sembrados a nivel nacional por año',
+        _label: 'Número de árboles sembrados a nivel nacional por año',
       },
       {
         strId: '1',
@@ -123,7 +123,7 @@ export class VisorComponent implements OnInit {
       {
         strId: '5',
         _label:
-          'Porcentaje de avance de la ejecución presupuestal de proyectos desarrollados por las autoridades ambientales CARs',
+          '% de avance de la ejecución presupuestal de proyectos desarrollados por las autoridades ambientales CARs',
       },
       {
         strId: '6',
