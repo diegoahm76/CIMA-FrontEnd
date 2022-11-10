@@ -17,6 +17,9 @@ import {PipesModule} from '@app/shared/pipes/pipes.module';
 import {ReactiveFormsModule} from '@angular/forms';
 // import { PowerBIEmbedModule } from 'powerbi-client-angular';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+import {CollapseModule} from 'ngx-bootstrap/collapse';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TreesService} from '@app/api/treesService/trees.service';
 const routes: Routes = [
   {
     path: '',
@@ -33,13 +36,15 @@ const routes: Routes = [
     ReactiveFormsModule,
     TranslateModule,
     BsDatepickerModule.forRoot(),
+    CollapseModule.forRoot(),
+    // BrowserAnimationsModule,
     BasicComponentsModule,
     ComponentsModule,
     PipesModule,
     // PowerBIEmbedModule,
   ],
   declarations: [VisorComponent],
-  providers: [StaticSelectOptionsService],
+  providers: [StaticSelectOptionsService, TreesService],
   exports: [RouterModule],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
 })

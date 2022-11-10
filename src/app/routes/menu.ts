@@ -28,16 +28,19 @@ const menuItems = [
       id: 'module.admin.users',
       text: 'Desempeño y gestión institucional',
       link: '/submodule',
+      icon: 'icon-book-open',
     },
     {
       id: 'module.admin.users',
       text: 'Estado de los recursos naturales',
       link: '/submodule',
+      icon: 'icon-pie-chart',
     },
     {
       id: 'module.admin.users',
       text: 'Prioridades de gobierno',
       link: '/submodule',
+      icon: 'icon-directions',
     },
   ],
   [

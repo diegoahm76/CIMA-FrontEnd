@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Params, Router} from '@angular/router';
+import {TreesService} from '@app/api/treesService/trees.service';
 import {DevelopUserRoleValues} from '@app/routes/shared/enums';
 import {StoreStatus} from '@app/shared/enums';
 import {Model} from '@app/shared/models';
@@ -44,7 +45,12 @@ export class VisorComponent implements OnInit {
   colorTheme = 'theme-green';
   dataUrlConstructor: any;
   metricsList: {strId: string; _label: string}[];
+  isCollapsed = false;
+  isCollapsedOne = true;
+  isCollapsedTwo = true;
+  isCollapsedThree = true;
   constructor(
+    private treeService: TreesService,
     private router: Router,
     private fb: FormBuilder,
     private translate: TranslateService,
@@ -60,6 +66,12 @@ export class VisorComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.treeService.getTrees(2020).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (error) => {}
+    );
     this.module =
       this.dataUrlConstructor.extras.state == undefined
         ? ''
@@ -86,47 +98,42 @@ export class VisorComponent implements OnInit {
     this.metricsList = [
       {
         strId: '0',
-        _label:
-          'Porcentaje de avance de la ejecución presupuestal de proyectos desarrollados por las autoridades ambientales CARs',
+        _label: 'Número de árboles sembrados a nivel nacional por año',
       },
       {
         strId: '1',
         _label:
-          'Proyectos impuesto al carbono  que aportan a la meta de 180 millones de árboles',
+          'Número actualizado del total  de arboles sembrados en el territorio nacional',
       },
       {
         strId: '2',
-        _label: 'Número de árboles sembrados a nivel nacional por año',
-      },
-      {
-        strId: '3',
-        _label:
-          'Avance porcentual de la meta de árboles a sembrar por CARS  (vigencia  gobierno 2018-2022)',
-      },
-      {
-        strId: '4',
-        _label:
-          'Número actualizado del total  de arboles sembrados en el territorio nacional',
-      },
-      {
-        strId: '5',
-        _label:
-          'Número actualizado del total  de arboles sembrados en el territorio nacional',
-      },
-      {
-        strId: '6',
-        _label:
-          'Número actualizado del total  de arboles sembrados por Autoridad Ambiental',
-      },
-      {
-        strId: '7',
         _label:
           'Número actualizado del total  de arboles sembrados por Departamento',
       },
       {
-        strId: '8',
+        strId: '3',
         _label:
           'Número actualizado del total  de arboles sembrados por region PND',
+      },
+      {
+        strId: '4',
+        _label:
+          'Número actualizado del total  de arboles sembrados por Autoridad Ambiental',
+      },
+      {
+        strId: '5',
+        _label:
+          '% de avance de la ejecución presupuestal de proyectos desarrollados por las autoridades ambientales CARs',
+      },
+      {
+        strId: '6',
+        _label:
+          'Avance porcentual de la meta de árboles a sembrar por CARS  (vigencia  gobierno 2018-2022)',
+      },
+      {
+        strId: '7',
+        _label:
+          'Proyectos impuesto al carbono  que aportan a la meta de 180 millones de árboles',
       },
     ];
     this.datesList = [
@@ -198,7 +205,7 @@ export class VisorComponent implements OnInit {
   private initVisor() {
     const layers = [
       {
-        url: 'https://mapas.parquesnacionales.gov.co/services/pnn_sinap/wms?',
+        url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{z}/{y}/{x}',
         type: 'wms',
         name: 'Runap',
         visible: true,
@@ -296,6 +303,36 @@ export class VisorComponent implements OnInit {
     }
 
     this.visor._loadGeoJson(dataGeoCopy, layers);
+  }
+
+  isCollapsedOption(option) {
+    this.clearForm();
+    switch (option) {
+      case 1:
+        this.isCollapsedOne = !this.isCollapsedOne;
+        break;
+      case 2:
+        this.isCollapsedTwo = !this.isCollapsedTwo;
+        break;
+      case 3:
+        this.isCollapsedThree = !this.isCollapsedThree;
+        break;
+      case 4:
+        break;
+      case 5:
+        break;
+      case 6:
+        break;
+      case 7:
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  clearForm() {
+    this.form.reset();
   }
 
   redirectToLink(option) {
