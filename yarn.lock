@@ -5528,6 +5528,11 @@
   "resolved" "https://registry.npmjs.org/lazy-ass/-/lazy-ass-1.6.0.tgz"
   "version" "1.6.0"
 
+"leaflet@^1.9.2":
+  "integrity" "sha512-Kc77HQvWO+y9y2oIs3dn5h5sy2kr3j41ewdqCMEUA4N89lgfUUfOBy7wnnHEstDpefiGFObq12FdopGRMx4J7g=="
+  "resolved" "https://registry.npmjs.org/leaflet/-/leaflet-1.9.2.tgz"
+  "version" "1.9.2"
+
 "less-loader@10.0.1":
   "integrity" "sha512-Crln//HpW9M5CbtdfWm3IO66Cvx1WhZQvNybXgfB2dD/6Sav9ppw+IWqs/FQKPBFO4B6X0X28Z0WNznshgwUzA=="
   "resolved" "https://registry.npmjs.org/less-loader/-/less-loader-10.0.1.tgz"

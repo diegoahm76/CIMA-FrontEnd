@@ -1,4 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Params, Router} from '@angular/router';
 import {TreesService} from '@app/api/treesService/trees.service';
@@ -9,10 +16,10 @@ import {FormService, StaticSelectOptionsService} from '@app/shared/services';
 import {StaticSelectOptionsState} from '@app/shared/utils';
 import {TranslateService} from '@ngx-translate/core';
 import {BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
-
+import * as L from 'leaflet';
 import {NGXLogger} from 'ngx-logger';
 import {Observable} from 'rxjs';
-import {dataGeo} from './mockData/geojson';
+import {TypeValuesService} from '@app/api/typeValuesServices/type-values.service';
 
 declare var Visor: any;
 
@@ -49,8 +56,12 @@ export class VisorComponent implements OnInit {
   isCollapsedOne = true;
   isCollapsedTwo = true;
   isCollapsedThree = true;
+  map: any;
+  dataTrees: any;
+  geoData: any;
   constructor(
     private treeService: TreesService,
+    private typeValuesService: TypeValuesService,
     private router: Router,
     private fb: FormBuilder,
     private translate: TranslateService,
@@ -66,12 +77,6 @@ export class VisorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.treeService.getTrees(2020).subscribe(
-      (data) => {
-        console.log(data);
-      },
-      (error) => {}
-    );
     this.module =
       this.dataUrlConstructor.extras.state == undefined
         ? ''
@@ -91,7 +96,7 @@ export class VisorComponent implements OnInit {
     });
     this.loadListForDefault();
     this.initForm();
-    this.initVisor();
+    // this.initVisor();
   }
 
   loadListForDefault() {
@@ -163,16 +168,27 @@ export class VisorComponent implements OnInit {
       {strId: '5', _label: 'Norma para la certificación'},
     ];
 
-    [
-      ...new Set(dataGeo.features.map((item) => item.properties.Departamento)),
-    ].forEach((dpto) => {
-      this.departamentosList.push({strId: dpto, _label: dpto});
-    });
-    [
-      ...new Set(dataGeo.features.map((item) => item.properties.Municipio)),
-    ].forEach((mcpio) => {
-      this.municipiosList.push({strId: mcpio, _label: mcpio});
-    });
+    this.typeValuesService.getMunicipalityList().subscribe(
+      (data) => {
+        data.municipalities.forEach((mcpio) => {
+          this.municipiosList.push({
+            strId: mcpio.strId.toString(),
+            _label: mcpio.label,
+          });
+        });
+        data.departments.forEach((dpto) => {
+          this.departamentosList.push({
+            strId: dpto.strId.toString(),
+            _label: dpto.label,
+          });
+        });
+        this.municipiosList = [...this.municipiosList];
+        this.departamentosList = [...this.departamentosList];
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   applyTheme(pop: any) {
@@ -202,41 +218,87 @@ export class VisorComponent implements OnInit {
     }
   }
 
-  private initVisor() {
-    const layers = [
-      {
-        url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{z}/{y}/{x}',
-        type: 'wms',
-        name: 'Runap',
-        visible: true,
-        topic: 'Runap',
-        order: 1,
-        description: 'Capa de Runap',
-        options: {
-          layers: 'pnn_sinap:rep_por_geom',
-          query: `1=0`,
-          transparent: true,
-          format: 'image/png',
-        },
-      },
-    ];
-    this.visor = new Visor(
-      'visor1',
-      layers,
-      {
-        zoom: true,
-        scale: true,
-        measure: true,
-        baseMap: true,
-      },
-      (state: string) => {
-        let features = JSON.parse(state).features;
-        features = Buffer.from(JSON.stringify(features)).toString('base64');
-        this.logger.info('json en base64', features);
-      }
-    );
-    // this.visor._loadGeoJson(dataGeo,layers);
+  ngAfterViewInit(): void {
+    this.mapInit();
   }
+
+  mapInit() {
+    this.map = L.map('map', {
+      zoomDelta: 0.25,
+      zoomSnap: 0,
+    }).setView([3.4844650899301546, -73.02543212993449], 6);
+    L.tileLayer(
+      'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
+      {
+        maxZoom: 19,
+        attribution:
+          '<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }
+    ).addTo(this.map);
+  }
+
+  loadPointsGeo(data) {
+    let geojsonMarkerOptions = {
+      radius: 6,
+      fillColor: 'green',
+      color: '#000',
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8,
+    };
+
+    this.geoData = L.geoJSON(data, {
+      onEachFeature: function (feature, latlng) {
+        latlng.bindPopup(
+          '<pre>' +
+            JSON.stringify(feature.properties, null, ' ').replace(
+              /[\{\}"]/g,
+              ''
+            ) +
+            '</pre>'
+        );
+      },
+      pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, geojsonMarkerOptions);
+      },
+    }).addTo(this.map);
+  }
+
+  // private initVisor() {
+  //   const layers = [
+  //     {
+  //       url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{z}/{y}/{x}',
+  //       type: 'wms',
+  //       name: 'Runap',
+  //       visible: true,
+  //       topic: 'Runap',
+  //       order: 1,
+  //       description: 'Capa de Runap',
+  //       options: {
+  //         layers: 'pnn_sinap:rep_por_geom',
+  //         query: `1=0`,
+  //         transparent: true,
+  //         format: 'image/png',
+  //       },
+  //     },
+  //   ];
+  //   this.visor = new Visor(
+  //     'visor1',
+  //     layers,
+  //     {
+  //       zoom: true,
+  //       scale: true,
+  //       measure: true,
+  //       baseMap: true,
+  //     },
+  //     (state: string) => {
+  //       let features = JSON.parse(state).features;
+  //       features = Buffer.from(JSON.stringify(features)).toString('base64');
+  //       this.logger.info('json en base64', features);
+  //     }
+  //   );
+  //   // this.visor._loadGeoJson(dataGeo,layers);
+  // }
 
   search({value, valid}: {value: {[param: string]: string}; valid: boolean}) {}
 
@@ -246,63 +308,57 @@ export class VisorComponent implements OnInit {
   }
 
   getPointsForFilters() {
-    const layers = [
-      {
-        url: 'https://mapas.parquesnacionales.gov.co/services/pnn_sinap/wms?',
-        type: 'wms',
-        name: 'Runap',
-        visible: true,
-        topic: 'Runap',
-        order: 1,
-        description: 'Capa de Runap',
-        options: {
-          layers: 'pnn_sinap:rep_por_geom',
-          query: `1=0`,
-          transparent: true,
-          format: 'image/png',
+    // const layers = [
+    //   {
+    //     url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{z}/{y}/{x}',
+    //     type: 'wms',
+    //     name: 'Runap',
+    //     visible: true,
+    //     topic: 'Runap',
+    //     order: 1,
+    //     description: 'Capa de Runap',
+    //     options: {
+    //       layers: 'pnn_sinap:rep_por_geom',
+    //       query: `1=0`,
+    //       transparent: true,
+    //       format: 'image/png',
+    //     },
+    //   },
+    // ];
+    // let dataGeoCopy = {...dataGeo};
+
+    if (this.dateFilter != null) {
+      this.treeService.getTrees(this.dateFilter).subscribe(
+        (data) => {
+          if (this.geoData != null && this.geoData != undefined)
+            this.removeMark();
+          this.dataTrees = data;
+          this.loadPointsGeo(this.dataTrees);
         },
+        (error) => {}
+      );
+    }
+    if (this.form.value.mcpio != null) {
+      this.treeService.getByMunicipality(this.form.value.mcpio).subscribe(
+        (data) => {
+          this.dataTrees = data;
+          this.loadPointsGeo(this.dataTrees);
+        },
+        (error) => {}
+      );
+    }
+  }
+  getTreesNational() {
+    this.isCollapsedOption(4);
+    this.treeService.getAllTrees().subscribe(
+      (data) => {
+        if (this.geoData != null && this.geoData != undefined)
+          this.removeMark();
+        this.dataTrees = data;
+        this.loadPointsGeo(this.dataTrees);
       },
-    ];
-    let dataGeoCopy = {...dataGeo};
-
-    if (this.form.value.scale == 0 && this.dateFilter != null) {
-      dataGeoCopy.features = dataGeo.features.filter(
-        (df) => df.properties.Anio == this.dateFilter
-      );
-    }
-    if (this.form.value.scale == 1 && this.dateFilter != null) {
-      dataGeoCopy.features = dataGeo.features.filter(
-        (df) =>
-          df.properties.Anio == this.dateFilter &&
-          df.properties.Departamento == this.form.value.dpto
-      );
-    }
-    if (this.form.value.scale == 2 && this.dateFilter != null) {
-      dataGeoCopy.features = dataGeo.features.filter(
-        (df) =>
-          df.properties.Anio == this.dateFilter &&
-          df.properties.Municipio == this.form.value.mcpio
-      );
-    }
-    if (this.form.value.scale == 3 && this.dateFilter != null) {
-      dataGeoCopy.features = dataGeo.features.filter(
-        (df) =>
-          df.properties.Anio == this.dateFilter &&
-          df.properties.Municipio == this.form.value.mcpio
-      );
-    }
-    if (this.form.value.scale == 4 && this.dateFilter != null) {
-      dataGeoCopy.features = dataGeo.features.filter(
-        (df) => df.properties.Anio == this.dateFilter
-      );
-    }
-    if (this.form.value.scale == 5 && this.dateFilter != null) {
-      dataGeoCopy.features = dataGeo.features.filter(
-        (df) => df.properties.Anio == this.dateFilter
-      );
-    }
-
-    this.visor._loadGeoJson(dataGeoCopy, layers);
+      (error) => {}
+    );
   }
 
   isCollapsedOption(option) {
@@ -310,22 +366,24 @@ export class VisorComponent implements OnInit {
     switch (option) {
       case 1:
         this.isCollapsedOne = !this.isCollapsedOne;
+        this.isCollapsedTwo = true;
+        this.isCollapsedThree = true;
         break;
       case 2:
         this.isCollapsedTwo = !this.isCollapsedTwo;
+        this.isCollapsedOne = true;
+        this.isCollapsedThree = true;
         break;
       case 3:
         this.isCollapsedThree = !this.isCollapsedThree;
+        this.isCollapsedTwo = true;
+        this.isCollapsedOne = true;
         break;
       case 4:
+        this.isCollapsedThree = true;
+        this.isCollapsedTwo = true;
+        this.isCollapsedOne = true;
         break;
-      case 5:
-        break;
-      case 6:
-        break;
-      case 7:
-        break;
-
       default:
         break;
     }
@@ -341,7 +399,9 @@ export class VisorComponent implements OnInit {
     });
   }
 
-  removeMark() {}
+  removeMark() {
+    this.geoData.clearLayers();
+  }
 
   fileAdded(file: File) {
     this.logger.info('fileAdded', file);

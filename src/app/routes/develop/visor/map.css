@@ -1157,3 +1157,40 @@ table.pnn-table thead th {
 
 .tree-container {
 }
+/*1920x1080*/
+/* @media screen and (min-width: 1920px) { 
+  .height-px{
+    height: 200px;
+  }
+  .height-pb-px{
+    height: 50px;
+  }
+} */
+@media screen and (max-width: 1920px) {
+  .height-px {
+    height: 220px;
+  }
+  .height-pb-px {
+    height: 80px;
+  }
+  .height-lf-px {
+    height: 650px;
+  }
+  .height-pbd-px {
+    height: 290px;
+  }
+}
+@media screen and (min-width: 1921px) {
+  .height-pb-px {
+    height: 240px;
+  }
+  .height-pbd-px {
+    height: 820px;
+  }
+  .height-px {
+    height: 670px;
+  }
+  .height-lf-px {
+    height: 1810px;
+  }
+}
