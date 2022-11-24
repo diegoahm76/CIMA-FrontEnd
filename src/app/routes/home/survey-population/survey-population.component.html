@@ -1,0 +1,107 @@
+<ng-template #template>
+  <div class="modal-header">
+    <h3 class="modal-title-govco">
+      Encuesta de Ingreso Sectorización Población
+    </h3>
+    <!-- <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button> -->
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+      <div class="row mb-1">
+        <div class="col-md-3">
+          <label>Tipo de Documento: (*)</label>
+          <app-select
+            placeholder="Seleccionar Tipo"
+            formControlName="typeDocument"
+            [list]="typeDocumentList"
+            [small]="true"
+          ></app-select>
+        </div>
+        <div class="col-md-3">
+          <label>Numero de Documento: (*)</label>
+          <input
+            type="number"
+            formControlName="documentNumber"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="row mb-1">
+        <div class="col-md-3">
+          <label>Primer Nombre: (*)</label>
+          <input
+            type="text"
+            formControlName="documentNumber"
+            class="form-control"
+          />
+        </div>
+        <div class="col-md-3">
+          <label>Segundo Nombre:</label>
+          <input
+            type="text"
+            formControlName="documentNumber"
+            class="form-control"
+          />
+        </div>
+        <div class="col-md-3">
+          <label>Primer Apellido: (*)</label>
+          <input
+            type="text"
+            formControlName="documentNumber"
+            class="form-control"
+          />
+        </div>
+        <div class="col-md-3">
+          <label>Segundo Apellido:</label>
+          <input
+            type="text"
+            formControlName="documentNumber"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="row mb-1">
+        <div class="col-md-3">
+          <label>Correo Electrónico:</label>
+          <input
+            type="email"
+            formControlName="documentNumber"
+            class="form-control"
+          />
+        </div>
+        <div class="col-md-3">
+          <label>Telefono:</label>
+          <input
+            type="tel"
+            formControlName="documentNumber"
+            class="form-control"
+          />
+        </div>
+        <div class="col-md-3">
+          <label>Dirección:</label>
+          <input
+            type="text"
+            formControlName="documentNumber"
+            class="form-control"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="modal-buttons-govco">
+      <!-- <button type="button" class="btn btn-primary btn-modal-govco">Ayuda</button> -->
+      <button
+        type="button"
+        class="btn btn-primary btn-modal-govco btn-contorno"
+      >
+        Ayuda
+      </button>
+      <button type="button" class="btn btn-primary btn-modal-govco">
+        Cerrar
+      </button>
+    </div>
+  </div>
+</ng-template>

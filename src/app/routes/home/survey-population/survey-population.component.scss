@@ -1,0 +1,43 @@
+.modal-title-govco {
+  font-family: Montserrat-SemiBold;
+  color: #004884;
+  font-size: 2rem;
+  margin-bottom: 1rem !important;
+  margin: 0px;
+  font-weight: normal;
+  line-height: 1.219;
+  width: fit-content;
+}
+
+.modal-buttons-govco {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.btn-modal-govco {
+  font-family: WorkSans-Medium;
+  display: block !important;
+  border-radius: 25px !important;
+  background-color: #3366cc !important;
+  border: 2px solid #3366cc !important;
+  padding-top: 11px !important;
+  padding-bottom: 11px !important;
+  padding-right: 48px !important;
+  padding-left: 48px !important;
+  font-size: 16px !important;
+  line-height: 8px !important;
+  letter-spacing: normal;
+  text-transform: none;
+  box-shadow: none;
+  height: 42px;
+  width: 165px;
+  margin-right: 5px;
+}
+
+.btn-modal-govco.btn-contorno {
+  border: 2px solid #3366cc !important;
+  background-color: transparent !important;
+  color: #3366cc !important;
+}
