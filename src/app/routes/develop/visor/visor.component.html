@@ -6,7 +6,25 @@
           <iframe
             class="height-pb-px"
             width="100%"
-            src="https://app.powerbi.com/view?r=eyJrIjoiODBlOGI5ODgtYTdhZS00ZWRiLTljNDItZDI0MjRkZGFmZDkwIiwidCI6IjJhODgyOWVlLTIyNDYtNDYxZS04NmJkLWFhYzQ0YThhODExMyJ9&pageName=ReportSection"
+            src="https://app.powerbi.com/reportEmbed?reportId=3fe23dc8-3530-4174-970e-bcab64a2071b&autoAuth=true&ctid=2a8829ee-2246-461e-86bd-aac44a8a8113"
+            frameborder="0"
+            allowFullScreen="false"
+          >
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-default">
+        <div class="card-body">
+          <iframe
+            id="reportOne"
+            class="height-px"
+            title="MMAMA0001-2-3-5-6"
+            width="100%"
+            src="https://app.powerbi.com/reportEmbed?reportId=fe6b63f4-637f-432d-ae45-de32f0394849&autoAuth=true&ctid=2a8829ee-2246-461e-86bd-aac44a8a8113"
             frameborder="0"
             allowFullScreen="false"
           >
@@ -23,24 +41,7 @@
             class="height-px"
             title="MMAMA0001-2-3-5-6"
             width="100%"
-            src="https://app.powerbi.com/view?r=eyJrIjoiNzlkODUwOGMtNDFhZi00YzY0LWE2YWItMmVkODc2NzAwNmUzIiwidCI6IjJhODgyOWVlLTIyNDYtNDYxZS04NmJkLWFhYzQ0YThhODExMyJ9"
-            frameborder="0"
-            allowFullScreen="false"
-          >
-          </iframe>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <div class="card card-default">
-        <div class="card-body">
-          <iframe
-            class="height-px"
-            title="MMAMA0001-2-3-5-6"
-            width="100%"
-            src="https://app.powerbi.com/view?r=eyJrIjoiZGQ1YzAxNjUtM2NiYi00NDg1LTk3OGUtNjI4OWM3NTE4NjQwIiwidCI6IjJhODgyOWVlLTIyNDYtNDYxZS04NmJkLWFhYzQ0YThhODExMyJ9"
+            src="https://app.powerbi.com/reportEmbed?reportId=aafac9f0-fc03-4061-8021-0b638db0f3f7&autoAuth=true&ctid=2a8829ee-2246-461e-86bd-aac44a8a8113"
             frameborder="0"
             allowFullScreen="false"
           >
@@ -53,7 +54,7 @@
 <div [ngClass]="isCollapsed ? 'contenedor-visor-collapse' : 'contenedor-visor'">
   <div class="card card-default">
     <div class="card-body">
-      <div id="map" class="height-lf-px"></div>
+      <div id="visor1" style="height: 650px"></div>
     </div>
   </div>
 </div>
@@ -182,6 +183,41 @@
             </button>
           </div>
         </div>
+        <div class="row m-1">
+          <div class="col-12">
+            <div class="card card-default">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12">
+                    <span
+                      >Fecha de corte de información: DD/MM/YYYY
+                      <em class="icon-folder-alt"></em>
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-5">
+                    <app-select
+                      placeholder="Formato"
+                      formControlName="fileTypes"
+                      [list]="fileTypesList"
+                      [small]="true"
+                    ></app-select>
+                  </div>
+                  <div class="col-7">
+                    <button
+                      type="button"
+                      class="btn mb-sm btn-primary mr-1 mb-1 color-marine-gov"
+                    >
+                      Exportar
+                      <em class="icon-action-redo"></em>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </form>
@@ -195,7 +231,7 @@
             class="height-pbd-px"
             title="MMAMA0001-2-3-5-6"
             width="100%"
-            src="https://app.powerbi.com/view?r=eyJrIjoiODBlOGI5ODgtYTdhZS00ZWRiLTljNDItZDI0MjRkZGFmZDkwIiwidCI6IjJhODgyOWVlLTIyNDYtNDYxZS04NmJkLWFhYzQ0YThhODExMyJ9&pageName=ReportSectiond9918c8cff8920967b1f"
+            src="https://app.powerbi.com/reportEmbed?reportId=f7980613-b87c-401a-893a-8f81ccdc2cf3&autoAuth=true&ctid=2a8829ee-2246-461e-86bd-aac44a8a8113"
             frameborder="0"
             allowFullScreen="false"
           >
@@ -212,7 +248,7 @@
             class="height-pbd-px"
             title="MMAMA0001-2-3-5-6"
             width="100%"
-            src="https://app.powerbi.com/view?r=eyJrIjoiODBlOGI5ODgtYTdhZS00ZWRiLTljNDItZDI0MjRkZGFmZDkwIiwidCI6IjJhODgyOWVlLTIyNDYtNDYxZS04NmJkLWFhYzQ0YThhODExMyJ9&pageName=ReportSection6293212374db6af8c36d"
+            src="https://app.powerbi.com/reportEmbed?reportId=428d1a06-aec1-4ae9-b2a0-87cf7f894957&autoAuth=true&ctid=2a8829ee-2246-461e-86bd-aac44a8a8113"
             frameborder="0"
             allowFullScreen="false"
           >
@@ -227,7 +263,7 @@
             class="height-pbd-px"
             title="MMAMA0001-2-3-5-6"
             width="100%"
-            src="https://app.powerbi.com/view?r=eyJrIjoiODBlOGI5ODgtYTdhZS00ZWRiLTljNDItZDI0MjRkZGFmZDkwIiwidCI6IjJhODgyOWVlLTIyNDYtNDYxZS04NmJkLWFhYzQ0YThhODExMyJ9&pageName=ReportSection42e613416b389b0d96ba"
+            src="https://app.powerbi.com/reportEmbed?reportId=779e7c23-58dd-453a-a6b0-0c098be08ecb&autoAuth=true&ctid=2a8829ee-2246-461e-86bd-aac44a8a8113"
             frameborder="0"
             allowFullScreen="false"
           >
