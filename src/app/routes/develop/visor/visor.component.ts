@@ -16,10 +16,10 @@ import {FormService, StaticSelectOptionsService} from '@app/shared/services';
 import {StaticSelectOptionsState} from '@app/shared/utils';
 import {TranslateService} from '@ngx-translate/core';
 import {BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
-import * as L from 'leaflet';
 import {NGXLogger} from 'ngx-logger';
 import {Observable} from 'rxjs';
 import {TypeValuesService} from '@app/api/typeValuesServices/type-values.service';
+import {isNull, isUndefined} from 'lodash';
 
 declare var Visor: any;
 
@@ -219,86 +219,67 @@ export class VisorComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    this.mapInit();
+    // this.mapInit();
+    this.initVisor();
   }
 
-  mapInit() {
-    this.map = L.map('map', {
-      zoomDelta: 0.25,
-      zoomSnap: 0,
-    }).setView([3.4844650899301546, -73.02543212993449], 6);
-    L.tileLayer(
-      'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
-      {
-        maxZoom: 19,
-        attribution:
-          '<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      }
-    ).addTo(this.map);
-  }
-
-  loadPointsGeo(data) {
-    let geojsonMarkerOptions = {
-      radius: 6,
-      fillColor: 'green',
-      color: '#000',
-      weight: 1,
-      opacity: 1,
-      fillOpacity: 0.8,
-    };
-
-    this.geoData = L.geoJSON(data, {
-      onEachFeature: function (feature, latlng) {
-        latlng.bindPopup(
-          '<pre>' +
-            JSON.stringify(feature.properties, null, ' ').replace(
-              /[\{\}"]/g,
-              ''
-            ) +
-            '</pre>'
-        );
-      },
-      pointToLayer: function (feature, latlng) {
-        return L.circleMarker(latlng, geojsonMarkerOptions);
-      },
-    }).addTo(this.map);
-  }
-
-  // private initVisor() {
-  //   const layers = [
+  // mapInit() {
+  //   this.map = L.map('map', {
+  //     zoomDelta: 0.25,
+  //     zoomSnap: 0,
+  //   }).setView([3.4844650899301546, -73.02543212993449], 6);
+  //   L.tileLayer(
+  //     'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
   //     {
-  //       url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{z}/{y}/{x}',
-  //       type: 'wms',
-  //       name: 'Runap',
-  //       visible: true,
-  //       topic: 'Runap',
-  //       order: 1,
-  //       description: 'Capa de Runap',
-  //       options: {
-  //         layers: 'pnn_sinap:rep_por_geom',
-  //         query: `1=0`,
-  //         transparent: true,
-  //         format: 'image/png',
-  //       },
-  //     },
-  //   ];
-  //   this.visor = new Visor(
-  //     'visor1',
-  //     layers,
-  //     {
-  //       zoom: true,
-  //       scale: true,
-  //       measure: true,
-  //       baseMap: true,
-  //     },
-  //     (state: string) => {
-  //       let features = JSON.parse(state).features;
-  //       features = Buffer.from(JSON.stringify(features)).toString('base64');
-  //       this.logger.info('json en base64', features);
+  //       maxZoom: 19,
+  //       attribution:
+  //         '<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   //     }
-  //   );
-  //   // this.visor._loadGeoJson(dataGeo,layers);
+  //   ).addTo(this.map);
   // }
+
+  private initVisor() {
+    const layers = [
+      {
+        url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{z}/{y}/{x}',
+        type: 'wms',
+        name: 'Runap',
+        visible: true,
+        topic: 'Runap',
+        order: 1,
+        description: 'Capa de Runap',
+        options: {
+          layers: 'pnn_sinap:rep_por_geom',
+          query: `1=0`,
+          transparent: true,
+          format: 'image/png',
+        },
+      },
+    ];
+    this.visor = new Visor(
+      'visor1',
+      layers,
+      {
+        zoom: true,
+        scale: true,
+        measure: true,
+        baseMap: false,
+        toolbar: true,
+        printTool: false,
+        showButton: {
+          layers: false,
+          addLayer: false,
+          identify: false,
+          markers: true,
+        },
+      },
+      (state: string) => {
+        let features = JSON.parse(state).features;
+        features = Buffer.from(JSON.stringify(features)).toString('base64');
+        this.logger.info('json en base64', features);
+      }
+    );
+  }
 
   search({value, valid}: {value: {[param: string]: string}; valid: boolean}) {}
 
@@ -330,8 +311,8 @@ export class VisorComponent implements OnInit {
     if (this.dateFilter != null) {
       this.treeService.getTrees(this.dateFilter).subscribe(
         (data) => {
-          if (this.geoData != null && this.geoData != undefined)
-            this.removeMark();
+          this.removeMark();
+          data.feature = [...data.features.slice(0, 1000)];
           this.dataTrees = data;
           this.loadPointsGeo(this.dataTrees);
         },
@@ -348,6 +329,36 @@ export class VisorComponent implements OnInit {
       );
     }
   }
+
+  loadPointsGeo(data) {
+    // let geojsonMarkerOptions = {
+    //   radius: 6,
+    //   fillColor: 'green',
+    //   color: '#000',
+    //   weight: 1,
+    //   opacity: 1,
+    //   fillOpacity: 0.8,
+    // };
+
+    // this.geoData = L.geoJSON(data, {
+    //   onEachFeature: function (feature, latlng) {
+    //     latlng.bindPopup(
+    //       '<pre>' +
+    //         JSON.stringify(feature.properties, null, ' ').replace(
+    //           /[\{\}"]/g,
+    //           ''
+    //         ) +
+    //         '</pre>'
+    //     );
+    //   },
+    //   pointToLayer: function (feature, latlng) {
+    //     return L.circleMarker(latlng, geojsonMarkerOptions);
+    //   },
+    // }).addTo(this.map);
+
+    this.visor._loadGeoJson(data, this.visor.map);
+  }
+
   getTreesNational() {
     this.isCollapsedOption(4);
     this.treeService.getAllTrees().subscribe(
@@ -400,7 +411,9 @@ export class VisorComponent implements OnInit {
   }
 
   removeMark() {
-    this.geoData.clearLayers();
+    if (!isNull(this.dataTrees) && !isUndefined(this.dataTrees))
+      this.visor.removeMarkers();
+    // this.geoData.clearLayers();
   }
 
   fileAdded(file: File) {
@@ -415,5 +428,11 @@ export class VisorComponent implements OnInit {
       // url: undefined,
       options: {format: 'image/png'},
     });
+  }
+
+  filterReport(id) {
+    let objIframe = document.getElementById('reportOne');
+    objIframe['src'] =
+      "https://app.powerbi.com/reportEmbed?reportId=9d529b7b-6dfa-4533-a038-c1501ee641b2&autoAuth=true&ctid=2a8829ee-2246-461e-86bd-aac44a8a8113&$filter=MMAMA0004/car in ('corp','ot')";
   }
 }
