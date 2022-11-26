@@ -38,6 +38,21 @@ export const environment = {
 
   minDelay: 500,
   footer: 'footer2',
+
+  typeDocumentList: [
+    {strId: '1', _label: 'Registro civil de nacimiento'},
+    {strId: '2', _label: 'Tarjeta de identidad'},
+    {strId: '3', _label: 'Cédula de ciudadanía'},
+    {strId: '4', _label: 'Tarjeta de extranjería'},
+    {strId: '5', _label: 'Cédula de extranjería'},
+    {strId: '6', _label: 'NIT'},
+    {strId: '7', _label: 'Pasaporte'},
+    {strId: '8', _label: 'Tipo de documento extranjero'},
+    {
+      strId: '9',
+      _label: 'Sin identificación del exterior u uso definido por la DIAN',
+    },
+  ],
 };
 
 /*

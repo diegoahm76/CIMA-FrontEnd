@@ -7,6 +7,7 @@
   font-weight: normal;
   line-height: 1.219;
   width: fit-content;
+  padding-top: 2%;
 }
 
 .modal-buttons-govco {
@@ -40,4 +41,17 @@
   border: 2px solid #3366cc !important;
   background-color: transparent !important;
   color: #3366cc !important;
+}
+
+.img-siac {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.message-error {
+  font-size: 0.8125rem;
+  color: #ff0000 !important;
+  font-weight: 500;
+  display: block;
 }
