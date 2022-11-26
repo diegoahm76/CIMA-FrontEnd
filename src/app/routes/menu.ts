@@ -26,13 +26,13 @@ const menuItems = [
     },
     {
       id: 'module.admin.users',
-      text: 'Desempeño y gestión institucional',
+      text: 'Desempeño y gestión',
       link: '/submodule',
       icon: 'icon-book-open',
     },
     {
       id: 'module.admin.users',
-      text: 'Estado de los recursos naturales',
+      text: 'Estado de los recursos',
       link: '/submodule',
       icon: 'icon-pie-chart',
     },
