@@ -18,7 +18,7 @@ export class SubmoduleComponent implements OnInit {
   }
 
   redirectToLink(modulo, submodule) {
-    this.router.navigateByUrl(modulo + '/' + submodule, {
+    this.router.navigateByUrl(modulo + '/' + submodule + '/topics', {
       state: {module: this.module, submodule: submodule},
     });
   }

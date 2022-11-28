@@ -4,8 +4,18 @@ import {RouterModule, Routes} from '@angular/router';
 import {PrivatePageGuardService} from '@app/shared/services';
 import {MmamaTressComponent} from './mmama-tress/mmama-tress.component';
 import {ClimateChangeManagementComponent} from './climate-change-management/climate-change-management.component';
+import {TopicsComponent} from './topics/topics.component';
 
 const routes: Routes = [
+  {
+    path: 'topics',
+    data: {
+      id: 'module.modules.government-priorities.management.topics',
+      action: 'view',
+    },
+    canActivate: [PrivatePageGuardService],
+    component: TopicsComponent,
+  },
   {
     path: 'tress',
     data: {
