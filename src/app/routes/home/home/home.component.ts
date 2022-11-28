@@ -15,8 +15,8 @@ export class HomeComponent {
     this.showModalSurveyPopulation();
   }
 
-  redirectToLink(option) {
-    this.router.navigateByUrl('submodule', {state: {module: option}});
+  redirectToLink(module) {
+    this.router.navigateByUrl(module + '/submodule', {state: {module: module}});
   }
 
   showModalSurveyPopulation() {

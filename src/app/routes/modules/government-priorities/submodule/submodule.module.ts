@@ -7,7 +7,7 @@ import {RouterModule, Routes} from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    data: {id: 'module.submenu', action: 'view'},
+    data: {id: 'module.modules.government-priorities.submenu', action: 'view'},
     canActivate: [PrivatePageGuardService],
     component: SubmoduleComponent,
   },

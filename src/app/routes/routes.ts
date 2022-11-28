@@ -23,11 +23,6 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./home/home.module').then((m) => m.HomeModule),
       },
-      {
-        path: 'submodule',
-        loadChildren: () =>
-          import('./submodule/submodule.module').then((m) => m.SubmoduleModule),
-      },
       // {
       //   path: 'cuenta',
       //   loadChildren: () => import('./account/account.module').then(m => m.AccountModule)
@@ -53,6 +48,13 @@ export const routes: Routes = [
         path: 'government-priorities',
         children: [
           {
+            path: 'submodule',
+            loadChildren: () =>
+              import(
+                './modules/government-priorities/submodule/submodule.module'
+              ).then((m) => m.SubmoduleModule),
+          },
+          {
             path: 'impact',
             loadChildren: () =>
               import(
@@ -77,6 +79,42 @@ export const routes: Routes = [
               import(
                 './modules/government-priorities/national/national.module'
               ).then((m) => m.NationalModule),
+          },
+        ],
+      },
+      {
+        path: 'performance-and-management',
+        children: [
+          {
+            path: 'submodule',
+            loadChildren: () =>
+              import(
+                './modules/performance-and-management/submodule/submodule.module'
+              ).then((m) => m.SubmoduleModule),
+          },
+          {
+            path: 'management',
+            children: [
+              {
+                path: '',
+                loadChildren: () =>
+                  import(
+                    './modules/performance-and-management/management/management.module'
+                  ).then((m) => m.ManagementModule),
+              },
+            ],
+          },
+          {
+            path: 'performance',
+            children: [
+              {
+                path: '',
+                loadChildren: () =>
+                  import(
+                    './modules/performance-and-management/performance/performance.module'
+                  ).then((m) => m.PerformanceModule),
+              },
+            ],
           },
         ],
       },
