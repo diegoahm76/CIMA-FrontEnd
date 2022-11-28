@@ -1,0 +1,53 @@
+<nav aria-label="Miga de pan predeterminada de tres niveles">
+  <ul class="breadcrumb-govco">
+    <li class="breadcrumb-item-govco"><a href="/inicio">Inicio</a></li>
+    <li class="breadcrumb-item-govco" aria-current="page">{{ module }}</li>
+    <li class="breadcrumb-item-govco active" aria-current="page">
+      {{ submodule }}
+    </li>
+  </ul>
+</nav>
+<div class="row">
+  <div class="col-12" align="center">
+    <div class="row">
+      <div class="col-md-6 col-sm-12 mt-2">
+        <a
+          class="icono-tarjeta-govco horizontal-tarjeta-govco"
+          title="descripción donde redirige el enlace"
+          (click)="
+            redirectToLink('performance-and-management', 'topics', 'FSINA')
+          "
+        >
+          <div class="container-icono-tarjeta-govco">
+            <img
+              src="https://www.gov.co/uploads/9d4af2e2-dbf1-4113-a463-0decc05c1b4b.svg"
+              alt="descripción de la imagen"
+            />
+          </div>
+          <div class="body-tarjeta-govco">
+            <h5>Fortalecimiento SINA</h5>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6 col-sm-12 mt-2">
+        <a
+          class="icono-tarjeta-govco horizontal-tarjeta-govco"
+          title="descripción donde redirige el enlace"
+          (click)="
+            redirectToLink('performance-and-management', 'performance', 'IEDI')
+          "
+        >
+          <div class="container-icono-tarjeta-govco">
+            <img
+              src="https://www.gov.co/uploads/9d4af2e2-dbf1-4113-a463-0decc05c1b4b.svg"
+              alt="descripción de la imagen"
+            />
+          </div>
+          <div class="body-tarjeta-govco">
+            <h5>Índice de Evaluación de Desempeño Institucional (IEDI)</h5>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
