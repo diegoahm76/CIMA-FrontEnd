@@ -109,6 +109,13 @@
         </div>
       </div>
     </form>
+    <div class="row mb-1">
+      <div class="col-md-12">
+        <span class="mt-2 message-error" *ngIf="transactionMessage != ''">{{
+          transactionMessage
+        }}</span>
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
     <div class="modal-buttons-govco">

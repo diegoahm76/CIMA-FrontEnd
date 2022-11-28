@@ -26,6 +26,7 @@ export class SurveyPopulationComponent implements OnInit {
   secondSurnameMessage: string = '';
   emailMessage: string = '';
   phoneNumberMessage: string = '';
+  transactionMessage: string = '';
 
   constructor(
     private modalService: BsModalService,
@@ -158,8 +159,7 @@ export class SurveyPopulationComponent implements OnInit {
           alert(message);
         },
         (error) => {
-          console.log('mostrar modal de error', error);
-          alert(error.error);
+          this.transactionMessage = error.error;
         }
       );
     }
