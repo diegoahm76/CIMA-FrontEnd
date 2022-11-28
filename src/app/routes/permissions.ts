@@ -7,6 +7,9 @@ export const permissions: Permissions = {
     'module.modules.government-priorities.submenu': [{action: 'view'}],
     'module.modules.performance-and-management.submenu': [{action: 'view'}],
     //Submodules
+    'module.modules.government-priorities.management.topics': [
+      {action: 'view'},
+    ],
     'module.modules.government-priorities.impact': [{action: 'view'}],
     'module.modules.government-priorities.management.mmama-tress': [
       {action: 'view'},
