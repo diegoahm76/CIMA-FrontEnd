@@ -1,19 +1,19 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {ManagementComponent} from './management.component';
+import {MmamaTressComponent} from './mmama-tress.component';
 
-describe('ManagementComponent', () => {
-  let component: ManagementComponent;
-  let fixture: ComponentFixture<ManagementComponent>;
+describe('MmamaTressComponent', () => {
+  let component: MmamaTressComponent;
+  let fixture: ComponentFixture<MmamaTressComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ManagementComponent],
+      declarations: [MmamaTressComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManagementComponent);
+    fixture = TestBed.createComponent(MmamaTressComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
