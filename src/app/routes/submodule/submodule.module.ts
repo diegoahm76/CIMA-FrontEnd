@@ -14,8 +14,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [SubmoduleComponent],
   imports: [RouterModule.forChild(routes), CommonModule],
-  exports: [RouterModule],
 })
 export class SubmoduleModule {}

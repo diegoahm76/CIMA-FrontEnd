@@ -17,8 +17,8 @@ export class SubmoduleComponent implements OnInit {
     this.module = this.dataUrlConstructor.extras.state.module;
   }
 
-  redirectToLink(submodule) {
-    this.router.navigateByUrl('develop/visor', {
+  redirectToLink(modulo, submodule) {
+    this.router.navigateByUrl(modulo + '/' + submodule, {
       state: {module: this.module, submodule: submodule},
     });
   }

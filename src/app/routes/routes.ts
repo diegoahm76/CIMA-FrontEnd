@@ -50,6 +50,37 @@ export const routes: Routes = [
       //   ]
       // },
       {
+        path: 'government-priorities',
+        children: [
+          {
+            path: 'impact',
+            loadChildren: () =>
+              import(
+                './modules/government-priorities/impact/impact/impact.module'
+              ).then((m) => m.ImpactModule),
+          },
+          {
+            path: 'management',
+            children: [
+              {
+                path: '',
+                loadChildren: () =>
+                  import(
+                    './modules/government-priorities/management/management.module'
+                  ).then((m) => m.ManagementModule),
+              },
+            ],
+          },
+          {
+            path: 'national',
+            loadChildren: () =>
+              import(
+                './modules/government-priorities/national/national.module'
+              ).then((m) => m.NationalModule),
+          },
+        ],
+      },
+      {
         path: 'develop',
         children: [
           {
