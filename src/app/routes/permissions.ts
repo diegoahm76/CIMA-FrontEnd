@@ -17,6 +17,12 @@ export const permissions: Permissions = {
     'module.modules.government-priorities.management.climate-change-management':
       [{action: 'view'}],
     'module.modules.government-priorities.national': [{action: 'view'}],
+    'module.modules.performance-and-management.management.topics': [
+      {action: 'view'},
+    ],
+    'module.modules.performance-and-management.management.biodiversity': [
+      {action: 'view'},
+    ],
     'module.modules.performance-and-management.performance.topics': [
       {action: 'view'},
     ],

@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-fsina',
-  templateUrl: './fsina.component.html',
-  styleUrls: ['./fsina.component.scss'],
+  selector: 'biodiversity',
+  templateUrl: './biodiversity.component.html',
+  styleUrls: ['./biodiversity.component.scss'],
 })
-export class FSINAComponent implements OnInit {
+export class BiodiversityComponent implements OnInit {
   dataUrlConstructor: any;
   module: string = '';
   submodule: string = '';
