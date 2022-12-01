@@ -1,19 +1,284 @@
-<div class="content-heading">
-  <div>Visor geográfico</div>
-</div>
-
-<div class="card card-default">
-  <div class="card-body">
-    <div id="sidebar" style="display: none"></div>
-    <div id="visor1" style="height: 600px"></div>
+<nav aria-label="Miga de pan predeterminada de tres niveles">
+  <ul class="breadcrumb-govco">
+    <li class="breadcrumb-item-govco"><a href="/inicio">Inicio</a></li>
+    <li class="breadcrumb-item-govco" aria-current="page">{{ module }}</li>
+    <li class="breadcrumb-item-govco active" aria-current="page">
+      {{ submodule }}
+    </li>
+  </ul>
+</nav>
+<div class="contenedor-pb">
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-default">
+        <div class="card-body">
+          <iframe
+            class="height-pb-px"
+            width="100%"
+            src="https://app.powerbi.com/reportEmbed?reportId=3fe23dc8-3530-4174-970e-bcab64a2071b&autoAuth=true&ctid=2a8829ee-2246-461e-86bd-aac44a8a8113"
+            frameborder="0"
+            allowFullScreen="false"
+          >
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-default">
+        <div class="card-body">
+          <iframe
+            id="reportOne"
+            class="height-px"
+            title="MMAMA0001-2-3-5-6"
+            width="100%"
+            src="https://app.powerbi.com/reportEmbed?reportId=fe6b63f4-637f-432d-ae45-de32f0394849&autoAuth=true&ctid=2a8829ee-2246-461e-86bd-aac44a8a8113"
+            frameborder="0"
+            allowFullScreen="false"
+          >
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-default">
+        <div class="card-body">
+          <iframe
+            class="height-px"
+            title="MMAMA0001-2-3-5-6"
+            width="100%"
+            src="https://app.powerbi.com/reportEmbed?reportId=aafac9f0-fc03-4061-8021-0b638db0f3f7&autoAuth=true&ctid=2a8829ee-2246-461e-86bd-aac44a8a8113"
+            frameborder="0"
+            allowFullScreen="false"
+          >
+          </iframe>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-<div class="col-12">
-  <app-upload-local-file
-    [acceptedFileTypes]="['application/zip']"
-    [expectedTypes]="['ZIP']"
-    [expectedTypesMap]="{'application/zip': '.zip'}"
-    (fileAdded)="fileAdded($event)"
-  ></app-upload-local-file>
+<div [ngClass]="isCollapsed ? 'contenedor-visor-collapse' : 'contenedor-visor'">
+  <div class="card card-default">
+    <div class="card-body">
+      <div id="visor1" style="height: 650px"></div>
+    </div>
+  </div>
+</div>
+<div
+  [ngClass]="isCollapsed ? 'contenedor-filter-collapse' : 'contenedor-filter'"
+>
+  <form [formGroup]="form" novalidate="" class="filters-form">
+    <div class="col-12">
+      <button
+        style="width: inherit"
+        type="button"
+        class="btn mb-sm btn-primary m-1 color-marine-gov"
+        (click)="isCollapsed = !isCollapsed"
+      ></button>
+      <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+        <div class="cursor-pointer" (click)="getTreesNational()">
+          <div class="well well-lg card card-block card-header">
+            {{ metricsList[1]._label }}
+          </div>
+        </div>
+        <div (click)="isCollapsedOption(1)" class="cursor-pointer">
+          <div class="well well-lg card card-block card-header">
+            {{ metricsList[0]._label }}
+          </div>
+        </div>
+        <div id="collapseBasic" [collapse]="isCollapsedOne">
+          <div class="row mb-1">
+            <div class="col-12">
+              <label>Año</label>
+            </div>
+            <div class="col-12">
+              <input
+                type="text"
+                formControlName="dateYYYY"
+                minMode="year"
+                placeholder="Selecionar año"
+                (bsValueChange)="onChangeDateYYYY($event)"
+                class="form-control"
+                [bsConfig]="{dateInputFormat: 'YYYY'}"
+                bsDatepicker
+              />
+            </div>
+          </div>
+        </div>
+        <div (click)="isCollapsedOption(2)" class="cursor-pointer">
+          <div class="well well-lg card card-block card-header">
+            {{ metricsList[2]._label }}
+          </div>
+        </div>
+        <div id="collapseDpto" [collapse]="isCollapsedTwo">
+          <div class="row mb-1">
+            <div class="col-12">
+              <label>Departamento</label>
+            </div>
+            <div class="col-md-12">
+              <app-select
+                placeholder="Seleccionar Departamento"
+                formControlName="dpto"
+                [list]="departamentosList"
+                [small]="true"
+              ></app-select>
+            </div>
+          </div>
+        </div>
+        <div (click)="isCollapsedOption(3)" class="cursor-pointer">
+          <div class="well well-lg card card-block card-header">
+            {{ metricsList[3]._label }}
+          </div>
+        </div>
+        <div id="collapseMcpio" [collapse]="isCollapsedThree">
+          <div class="row mb-1">
+            <div class="col-12">
+              <label>Municipio</label>
+            </div>
+            <div class="col-md-12">
+              <app-select
+                placeholder="Seleccionar Municipio"
+                formControlName="mcpio"
+                [list]="municipiosList"
+                [small]="true"
+              ></app-select>
+            </div>
+          </div>
+        </div>
+        <div (click)="isCollapsedOption(4)" class="cursor-pointer">
+          <div class="well well-lg card card-block card-header">
+            {{ metricsList[4]._label }}
+          </div>
+        </div>
+        <div id="collapseBasic" [collapse]="isCollapsedThree">
+          <div class="row mb-1"></div>
+        </div>
+        <div (click)="isCollapsedOption(4)" class="cursor-pointer">
+          <div class="well well-lg card card-block card-header">
+            {{ metricsList[5]._label }}
+          </div>
+        </div>
+        <div id="collapseBasic" [collapse]="isCollapsedThree">
+          <div class="row mb-1"></div>
+        </div>
+        <div (click)="isCollapsedOption(4)" class="cursor-pointer">
+          <div class="well well-lg card card-block card-header">
+            {{ metricsList[6]._label }}
+          </div>
+        </div>
+        <div id="collapseBasic" [collapse]="isCollapsedThree">
+          <div class="row mb-1"></div>
+        </div>
+        <div (click)="isCollapsedOption(4)" class="cursor-pointer">
+          <div class="well well-lg card card-block card-header">
+            {{ metricsList[7]._label }}
+          </div>
+        </div>
+        <div id="collapseBasic" [collapse]="isCollapsedThree">
+          <div class="row mb-1"></div>
+        </div>
+        <div class="row m-1">
+          <div class="col-12">
+            <button
+              type="button"
+              style="width: inherit"
+              (click)="getPointsForFilters()"
+              class="btn mb-sm btn-primary mr-1 mb-1 color-marine-gov"
+            >
+              Filtrar
+            </button>
+          </div>
+        </div>
+        <div class="row m-1">
+          <div class="col-12">
+            <div class="card card-default">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12">
+                    <span
+                      >Fecha de corte de información: DD/MM/YYYY
+                      <em class="icon-folder-alt"></em>
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-5">
+                    <app-select
+                      placeholder="Formato"
+                      formControlName="fileTypes"
+                      [list]="fileTypesList"
+                      [small]="true"
+                    ></app-select>
+                  </div>
+                  <div class="col-7">
+                    <button
+                      type="button"
+                      class="btn mb-sm btn-primary mr-1 mb-1 color-marine-gov"
+                    >
+                      Exportar
+                      <em class="icon-action-redo"></em>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="contenedor-pb">
+  <div class="row p-0">
+    <div class="col-12">
+      <div class="card card-default">
+        <div class="card-body">
+          <iframe
+            class="height-pbd-px"
+            title="MMAMA0001-2-3-5-6"
+            width="100%"
+            src="https://app.powerbi.com/reportEmbed?reportId=f7980613-b87c-401a-893a-8f81ccdc2cf3&autoAuth=true&ctid=2a8829ee-2246-461e-86bd-aac44a8a8113"
+            frameborder="0"
+            allowFullScreen="false"
+          >
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row p-0">
+    <div class="col-6">
+      <div class="card card-default">
+        <div class="card-body">
+          <iframe
+            class="height-pbd-px"
+            title="MMAMA0001-2-3-5-6"
+            width="100%"
+            src="https://app.powerbi.com/reportEmbed?reportId=428d1a06-aec1-4ae9-b2a0-87cf7f894957&autoAuth=true&ctid=2a8829ee-2246-461e-86bd-aac44a8a8113"
+            frameborder="0"
+            allowFullScreen="false"
+          >
+          </iframe>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 p-0">
+      <div class="card card-default">
+        <div class="card-body">
+          <iframe
+            class="height-pbd-px"
+            title="MMAMA0001-2-3-5-6"
+            width="100%"
+            src="https://app.powerbi.com/reportEmbed?reportId=779e7c23-58dd-453a-a6b0-0c098be08ecb&autoAuth=true&ctid=2a8829ee-2246-461e-86bd-aac44a8a8113"
+            frameborder="0"
+            allowFullScreen="false"
+          >
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

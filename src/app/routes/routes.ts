@@ -45,6 +45,80 @@ export const routes: Routes = [
       //   ]
       // },
       {
+        path: 'government-priorities',
+        children: [
+          {
+            path: 'submodule',
+            loadChildren: () =>
+              import(
+                './modules/government-priorities/submodule/submodule.module'
+              ).then((m) => m.SubmoduleModule),
+          },
+          {
+            path: 'impact',
+            loadChildren: () =>
+              import(
+                './modules/government-priorities/impact/impact/impact.module'
+              ).then((m) => m.ImpactModule),
+          },
+          {
+            path: 'management',
+            children: [
+              {
+                path: '',
+                loadChildren: () =>
+                  import(
+                    './modules/government-priorities/management/management.module'
+                  ).then((m) => m.ManagementModule),
+              },
+            ],
+          },
+          {
+            path: 'national',
+            loadChildren: () =>
+              import(
+                './modules/government-priorities/national/national.module'
+              ).then((m) => m.NationalModule),
+          },
+        ],
+      },
+      {
+        path: 'performance-and-management',
+        children: [
+          {
+            path: 'submodule',
+            loadChildren: () =>
+              import(
+                './modules/performance-and-management/submodule/submodule.module'
+              ).then((m) => m.SubmoduleModule),
+          },
+          {
+            path: 'management',
+            children: [
+              {
+                path: '',
+                loadChildren: () =>
+                  import(
+                    './modules/performance-and-management/management/management.module'
+                  ).then((m) => m.ManagementModule),
+              },
+            ],
+          },
+          {
+            path: 'performance',
+            children: [
+              {
+                path: '',
+                loadChildren: () =>
+                  import(
+                    './modules/performance-and-management/performance/performance.module'
+                  ).then((m) => m.PerformanceModule),
+              },
+            ],
+          },
+        ],
+      },
+      {
         path: 'develop',
         children: [
           {

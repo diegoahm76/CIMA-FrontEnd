@@ -1,7 +1,10 @@
 <!-- START Sidebar (left)-->
 <div class="aside-inner">
-  <nav class="sidebar" sidebar-anyclick-close="" [class.show-scrollbar]="settings.getLayoutSetting('asideScrollbar')">
-
+  <nav
+    class="sidebar"
+    sidebar-anyclick-close=""
+    [class.show-scrollbar]="settings.getLayoutSetting('asideScrollbar')"
+  >
     <!-- START sidebar nav-->
     <ul class="sidebar-nav">
       <!-- START user info-->
@@ -33,7 +36,7 @@
                 *ngIf="item.alert"
                 class="float-right"
                 [ngClass]="item.label || 'badge badge-success'"
-                >{{item.alert}}</span
+                >{{ item.alert }}</span
               >
               <em *ngIf="item.icon" class="{{ item.icon }}"></em>
               <span>{{ (item.translate | translate) || item.text }}</span>
@@ -53,8 +56,8 @@
                 [ngClass]="item.label || 'badge badge-success'"
                 >{{ item.alert }}</span
               >
-              <em *ngIf="item.icon" class="{{item.icon}}"></em>
-              <span>{{(item.translate | translate) || item.text}}</span>
+              <em *ngIf="item.icon" class="{{ item.icon }}"></em>
+              <span>{{ (item.translate | translate) || item.text }}</span>
             </a>
             <a
               *ngIf="item.click == 'logout'"
@@ -66,7 +69,7 @@
                 *ngIf="item.alert"
                 class="float-right"
                 [ngClass]="item.label || 'badge badge-success'"
-              >{{ item.alert }}</span
+                >{{ item.alert }}</span
               >
               <em *ngIf="item.icon" class="{{ item.icon }}"></em>
               <span>{{ (item.translate | translate) || item.text }}</span>
@@ -76,7 +79,7 @@
           <ng-template #submenu>
             <!-- has submenu -->
             <a
-              title="{{item.text}}"
+              title="{{ item.text }}"
               (click)="toggleSubmenuClick($event)"
               (mouseenter)="toggleSubmenuHover($event)"
             >
@@ -86,7 +89,7 @@
                 [ngClass]="item.label || 'badge badge-success'"
                 >{{ item.alert }}</span
               >
-              <em *ngIf="item.icon" class="{{item.icon}}"></em>
+              <em *ngIf="item.icon" class="{{ item.icon }}"></em>
               <span>{{ (item.translate | translate) || item.text }}</span>
             </a>
             <!-- SUBLEVEL -->
@@ -106,7 +109,7 @@
                   *ngIf="!subitem.heading && !subitem.submenu && subitem.elink"
                   [attr.target]="subitem.target"
                   [attr.href]="subitem.elink"
-                  title="{{subitem.text}}"
+                  title="{{ subitem.text }}"
                 >
                   <span
                     *ngIf="subitem.alert"
@@ -115,14 +118,16 @@
                     >{{ subitem.alert }}</span
                   >
                   <em *ngIf="subitem.icon" class="{{ subitem.icon }}"></em>
-                  <span>{{ (subitem.translate | translate) || subitem.text }}</span>
+                  <span>{{
+                    (subitem.translate | translate) || subitem.text
+                  }}</span>
                 </a>
                 <!-- sublevel: single menu item  -->
                 <a
                   *ngIf="!subitem.submenu && !subitem.elink"
                   [routerLink]="subitem.link"
                   [attr.route]="subitem.link"
-                  title="{{subitem.text}}"
+                  title="{{ subitem.text }}"
                 >
                   <span
                     *ngIf="subitem.alert"
@@ -131,7 +136,9 @@
                     >{{ subitem.alert }}</span
                   >
                   <em *ngIf="subitem.icon" class="{{ subitem.icon }}"></em>
-                  <span>{{ (subitem.translate | translate) || subitem.text }}</span>
+                  <span>{{
+                    (subitem.translate | translate) || subitem.text
+                  }}</span>
                 </a>
                 <!-- sublevel: has submenu -->
                 <a
@@ -147,7 +154,9 @@
                     >{{ subitem.alert }}</span
                   >
                   <em *ngIf="subitem.icon" class="{{ subitem.icon }}"></em>
-                  <span>{{ (subitem.translate | translate) || subitem.text }}</span>
+                  <span>{{
+                    (subitem.translate | translate) || subitem.text
+                  }}</span>
                 </a>
                 <!-- SUBLEVEL 2 -->
                 <ul
@@ -176,7 +185,9 @@
                         *ngIf="subitem2.icon"
                         class="{{ subitem2.icon }}"
                       ></em>
-                      <span>{{ (subitem2.translate | translate) || subitem2.text }}</span>
+                      <span>{{
+                        (subitem2.translate | translate) || subitem2.text
+                      }}</span>
                     </a>
                     <!-- sublevel2: has submenu -->
                     <a
@@ -195,7 +206,9 @@
                         *ngIf="subitem2.icon"
                         class="{{ subitem2.icon }}"
                       ></em>
-                      <span>{{ (subitem2.translate | translate) || subitem2.text }}</span>
+                      <span>{{
+                        (subitem2.translate | translate) || subitem2.text
+                      }}</span>
                     </a>
                     <!-- SUBLEVEL 3 -->
                     <ul
@@ -224,7 +237,9 @@
                             *ngIf="subitem3.icon"
                             class="{{ subitem3.icon }}"
                           ></em>
-                          <span>{{ (subitem3.translate | translate) || subitem3.text }}</span>
+                          <span>{{
+                            (subitem3.translate | translate) || subitem3.text
+                          }}</span>
                         </a>
                         <!-- sublevel3: has submenu -->
                         <a
@@ -243,7 +258,9 @@
                             *ngIf="subitem3.icon"
                             class="{{ subitem3.icon }}"
                           ></em>
-                          <span>{{ (subitem3.translate | translate) || subitem3.text }}</span>
+                          <span>{{
+                            (subitem3.translate | translate) || subitem3.text
+                          }}</span>
                         </a>
                         <!-- SUBLEVEL 4 -->
                         <ul
@@ -260,19 +277,24 @@
                               *ngIf="!subitem4.submenu"
                               [routerLink]="subitem4.link"
                               [attr.route]="subitem4.link"
-                              title="{{subitem4.text}}"
+                              title="{{ subitem4.text }}"
                             >
                               <span
                                 *ngIf="subitem4.alert"
                                 class="float-right"
-                                [ngClass]="subitem4.label || 'badge badge-success'"
+                                [ngClass]="
+                                  subitem4.label || 'badge badge-success'
+                                "
                                 >{{ subitem4.alert }}</span
                               >
                               <em
                                 *ngIf="subitem4.icon"
                                 class="{{ subitem4.icon }}"
                               ></em>
-                              <span>{{ (subitem4.translate | translate) || subitem4.text }}</span>
+                              <span>{{
+                                (subitem4.translate | translate) ||
+                                  subitem4.text
+                              }}</span>
                             </a>
                           </li>
                         </ul>

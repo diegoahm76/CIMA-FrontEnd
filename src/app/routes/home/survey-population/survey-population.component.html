@@ -1,0 +1,138 @@
+<ng-template #template>
+  <div class="modal-header">
+    <h3 class="modal-title-govco">
+      Encuesta de Ingreso Sectorización Población
+    </h3>
+    <img
+      class="img-siac"
+      width="130"
+      height="80"
+      src="./assets/img/logo-siac.png"
+    />
+    <!-- <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button> -->
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="form" novalidate="">
+      <div class="row mb-1">
+        <div class="col-md-3">
+          <label>Tipo de Documento: (*)</label>
+          <app-select
+            placeholder="Seleccionar Tipo de Documento"
+            formControlName="typeDocument"
+            [list]="typeDocumentList"
+            [small]="true"
+          ></app-select>
+          <span class="m-1 message-error" *ngIf="typeDocumentMessage != ''">{{
+            typeDocumentMessage
+          }}</span>
+        </div>
+        <div class="col-md-3">
+          <label>Numero de Documento: (*)</label>
+          <input
+            type="text"
+            formControlName="documentNumber"
+            class="form-control"
+          />
+          <span class="m-1 message-error" *ngIf="documentNumberMessage != ''">{{
+            documentNumberMessage
+          }}</span>
+        </div>
+      </div>
+      <div class="row mb-1">
+        <div class="col-md-3">
+          <label>Primer Nombre: (*)</label>
+          <input type="text" formControlName="firstName" class="form-control" />
+          <span class="m-1 message-error" *ngIf="firstNameMessage != ''">{{
+            firstNameMessage
+          }}</span>
+        </div>
+        <div class="col-md-3">
+          <label>Segundo Nombre:</label>
+          <input
+            type="text"
+            formControlName="secondName"
+            class="form-control"
+          />
+          <span class="m-1 message-error" *ngIf="secondNameMessage != ''">{{
+            secondNameMessage
+          }}</span>
+        </div>
+        <div class="col-md-3">
+          <label>Primer Apellido: (*)</label>
+          <input type="text" formControlName="surname" class="form-control" />
+          <span class="m-1 message-error" *ngIf="surnameMessage != ''">{{
+            surnameMessage
+          }}</span>
+        </div>
+        <div class="col-md-3">
+          <label>Segundo Apellido:</label>
+          <input
+            type="text"
+            formControlName="secondSurname"
+            class="form-control"
+          />
+          <span class="m-1 message-error" *ngIf="secondSurnameMessage != ''">{{
+            secondSurnameMessage
+          }}</span>
+        </div>
+      </div>
+      <div class="row mb-1">
+        <div class="col-md-3">
+          <label>Correo Electrónico:</label>
+          <input
+            type="mail"
+            formControlName="email"
+            class="form-control"
+            placeholder="Ej: correo@email.com"
+          />
+          <span class="m-1 message-error" *ngIf="emailMessage != ''">{{
+            emailMessage
+          }}</span>
+        </div>
+        <div class="col-md-3">
+          <label>Telefono:</label>
+          <input
+            type="tel"
+            formControlName="phoneNumber"
+            class="form-control"
+            placeholder="Ej: +57 310 4021752"
+          />
+          <span class="m-1 message-error" *ngIf="phoneNumberMessage != ''">{{
+            phoneNumberMessage
+          }}</span>
+        </div>
+        <div class="col-md-3">
+          <label>Dirección:</label>
+          <input type="text" formControlName="address" class="form-control" />
+        </div>
+      </div>
+    </form>
+    <div class="row mb-1">
+      <div class="col-md-12">
+        <span class="mt-2 message-error" *ngIf="transactionMessage != ''">{{
+          transactionMessage
+        }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="modal-buttons-govco">
+      <!-- <button type="button" class="btn btn-primary btn-modal-govco">Ayuda</button> -->
+      <button
+        type="button"
+        class="btn btn-primary btn-modal-govco btn-contorno"
+      >
+        Ayuda
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary btn-modal-govco"
+        (click)="savePerson()"
+      >
+        Cerrar
+      </button>
+    </div>
+  </div>
+</ng-template>

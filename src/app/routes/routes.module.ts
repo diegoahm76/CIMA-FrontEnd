@@ -8,7 +8,7 @@ import {routes} from './routes';
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   declarations: [],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class RoutesModule {
   constructor(menuService: MenuService) {

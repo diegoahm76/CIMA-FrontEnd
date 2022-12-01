@@ -3,8 +3,35 @@ import {Permissions} from '@shared/interfaces';
 export const permissions: Permissions = {
   admin: {
     // Modules
-
     'module.home': [{action: 'view'}],
+    'module.modules.government-priorities.submenu': [{action: 'view'}],
+    'module.modules.performance-and-management.submenu': [{action: 'view'}],
+    //Submodules
+    'module.modules.government-priorities.management.topics': [
+      {action: 'view'},
+    ],
+    'module.modules.government-priorities.impact': [{action: 'view'}],
+    'module.modules.government-priorities.management.mmama-tress': [
+      {action: 'view'},
+    ],
+    'module.modules.government-priorities.management.climate-change-management':
+      [{action: 'view'}],
+    'module.modules.government-priorities.national': [{action: 'view'}],
+    'module.modules.performance-and-management.management.topics': [
+      {action: 'view'},
+    ],
+    'module.modules.performance-and-management.management.biodiversity': [
+      {action: 'view'},
+    ],
+    'module.modules.performance-and-management.performance.topics': [
+      {action: 'view'},
+    ],
+    'module.modules.performance-and-management.performance.iedi': [
+      {action: 'view'},
+    ],
+    'module.modules.performance-and-management.performance.fsina': [
+      {action: 'view'},
+    ],
 
     'module.admin.users': [{action: 'view'}],
 
@@ -18,13 +45,11 @@ export const permissions: Permissions = {
     'module.develop.forbiddenResource': [],
 
     // Sidebar
-
     'sidebar.home.heading': [{action: 'view'}],
     'sidebar.home.dashboard': [{action: 'view'}],
-
+    'sidebar.submenu.dashboard': [{action: 'view'}],
     'sidebar.admin.heading': [{action: 'view'}],
     'sidebar.admin.users': [{action: 'view'}],
-
     'sidebar.account.heading': [{action: 'view'}],
     // 'sidebar.account.profile': [
     //   {action: 'view'}
@@ -33,7 +58,6 @@ export const permissions: Permissions = {
     //   {action: 'view'}
     // ],
     'sidebar.account.logout': [{action: 'view'}],
-
     'sidebar.develop.heading': [{action: 'view'}],
     'sidebar.develop.users': [{action: 'view'}],
     'sidebar.develop.uploadFile': [{action: 'view'}],
